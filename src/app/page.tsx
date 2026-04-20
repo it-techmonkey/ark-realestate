@@ -277,7 +277,7 @@ export default async function HomePage() {
 
       <Reveal direction="right">
         <section className="border-b border-white/10 bg-[#050505] py-24 md:py-48">
-          <FlowParallax className="mx-auto max-w-[1280px] px-5 md:px-20" speed={0.08}>
+          <div className="mx-auto max-w-[1280px] px-5 md:px-20">
             {/* Section Header - Centered for better impact */}
             <div className="mb-12 text-center">
               <div className="flex items-center justify-center gap-4">
@@ -406,7 +406,7 @@ export default async function HomePage() {
                 </span>
               </Link>
             </div>
-          </FlowParallax>
+          </div>
         </section>
       </Reveal>
 

@@ -25,6 +25,7 @@ const navLinks = [
   { href: "/about", label: "About Us" },
   { href: "/team", label: "Team" },
   { href: "/featured", label: "Property Listings" },
+  { href: "/international", label: "International" },
   { href: "/guide", label: "Guide" },
   { href: "/blog", label: "Blogs" },
   { href: "/events", label: "Events" },
