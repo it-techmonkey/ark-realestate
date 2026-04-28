@@ -21,6 +21,7 @@ export const leadershipProfiles: LeadershipProfile[] = [
     name: "Vinay Chelani",
     designation: "Founder",
     image: `${LEADERS_BASE}/vinay boss.png`,
+    unoptimized: true,
   },
   {
     name: "Aparna Singh",
@@ -33,10 +34,6 @@ export const leadershipProfiles: LeadershipProfile[] = [
     name: "Vinit Chelani",
     designation: "Vice President",
     image: `${LEADERS_BASE}/vinat sir.jpg.jpeg`,
-  },
-  {
-    name: "Vinay Chelani",
-    designation: "Vice President",
-    image: `/final%20images/Leaders/vinay boss.png`,
+    unoptimized: true,
   },
 ];

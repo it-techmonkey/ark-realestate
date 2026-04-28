@@ -24,9 +24,10 @@ const vicePresidents = [
     unoptimized: true,
   },
   {
-    name: "Vinay Chelani",
+    name: "Vinit Chelani",
     designation: "Vice President",
-    image: "/final%20images/Leaders/vinay boss.png",
+    image: "/final%20images/Leaders/vinat sir.jpg.jpeg",
+    unoptimized: true,
   },
 ] as const;
 
