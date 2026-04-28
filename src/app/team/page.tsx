@@ -23,7 +23,11 @@ const vicePresidents = [
     objectPositionTop: true,
     unoptimized: true,
   },
-  { name: "Pulkit Goyal", designation: "Vice President", image: "/Director%20of%20sales/Pulkit.jpeg" },
+  {
+    name: "Vinay Chelani",
+    designation: "Vice President",
+    image: "/final%20images/Leaders/vinay boss.png",
+  },
 ] as const;
 
 const rewardsRecognitionImages = [

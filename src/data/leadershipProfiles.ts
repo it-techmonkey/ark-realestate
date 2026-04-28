@@ -35,8 +35,8 @@ export const leadershipProfiles: LeadershipProfile[] = [
     image: `${LEADERS_BASE}/vinat sir.jpg.jpeg`,
   },
   {
-    name: "Pulkit Goyal",
+    name: "Vinay Chelani",
     designation: "Vice President",
-    image: `/Director%20of%20sales/Pulkit.jpeg`,
+    image: `/final%20images/Leaders/vinay boss.png`,
   },
 ];
