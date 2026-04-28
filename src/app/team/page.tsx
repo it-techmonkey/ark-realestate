@@ -17,7 +17,7 @@ const directorOfSales = [
 
 const vicePresidents = [
   {
-    name: "Aparna Singh",
+    name: "Arpana Singh",
     designation: "Vice President",
     image: "/Director%20of%20sales/Arpana.JPG",
     objectPositionTop: true,
