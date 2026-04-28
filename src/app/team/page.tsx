@@ -13,7 +13,16 @@ const directorOfSales = [
   { name: "Sumitra Nayar", designation: "Director of Sales", image: "/Director%20of%20sales/Sumitra.JPG" },
   { name: "Aarthi", designation: "International Director of Sales", image: "/Director%20of%20sales/Arti.jpeg" },
   { name: "Krishna Kumar", designation: "Director of Sales", image: "/Director%20of%20sales/Krishna.jpeg" },
-  { name: "Pulkit Goyal", designation: "International Director of Sales", image: "/Director%20of%20sales/Pulkit.jpeg" },
+] as const;
+
+const vicePresidents = [
+  {
+    name: "Aparna Singh",
+    designation: "Vice President",
+    image: "/Director%20of%20sales/Arpana.JPG",
+    objectPositionTop: true,
+  },
+  { name: "Pulkit Goyal", designation: "Vice President", image: "/Director%20of%20sales/Pulkit.jpeg" },
 ] as const;
 
 const rewardsRecognitionImages = [
@@ -55,6 +64,42 @@ export default function TeamPage() {
           </div>
         </div>
       </section>
+
+      <Reveal direction="up">
+        <PremiumSection
+          center
+          eyebrow="Leadership Team"
+          title={
+            <>
+              Vice
+              <span className="text-[#c9a84c]"> Presidents</span>
+            </>
+          }
+          description="Senior leadership guiding strategy, growth, and client excellence."
+        >
+          <div className="mx-auto grid w-full max-w-3xl grid-cols-1 gap-5 sm:grid-cols-2">
+            {vicePresidents.map((person) => (
+              <article key={person.name} className="overflow-hidden rounded-xl border border-white/10 bg-black/30">
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src={person.image}
+                    alt={person.name}
+                    fill
+                    className={
+                      "objectPositionTop" in person && person.objectPositionTop ? "object-cover object-top" : "object-cover"
+                    }
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
+                <div className="border-t border-white/10 p-4">
+                  <p className="font-serif text-xl italic text-[#c9a84c]">{person.name}</p>
+                  <p className="mt-1 text-xs uppercase tracking-[2px] text-white/60">{person.designation}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </PremiumSection>
+      </Reveal>
 
       <Reveal direction="up">
         <PremiumSection

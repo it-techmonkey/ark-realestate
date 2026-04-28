@@ -34,7 +34,7 @@ export default function AboutLeadershipSection({
                 src={member.image}
                 alt={member.name}
                 fill
-                className="object-cover grayscale transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06] group-hover:grayscale-0"
+                className={`object-cover grayscale transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06] group-hover:grayscale-0${member.objectPositionTop ? " object-top" : ""}`}
                 sizes="(max-width: 768px) 50vw, 25vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/5 to-transparent transition-opacity duration-500 group-hover:from-black/70" />

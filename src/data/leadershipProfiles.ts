@@ -3,6 +3,8 @@ export type LeadershipProfile = {
   designation: string;
   email?: string;
   image: string;
+  /** Anchor crop to top so heads are not clipped in portrait frames */
+  objectPositionTop?: boolean;
 };
 
 const LEADERS_BASE = "/final%20images/Leaders";
@@ -19,9 +21,10 @@ export const leadershipProfiles: LeadershipProfile[] = [
     image: `${LEADERS_BASE}/vinay boss.png`,
   },
   {
-    name: "Arpana Singh",
+    name: "Aparna Singh",
     designation: "Vice President",
-    image: `${LEADERS_BASE}/Arpana.JPG`,
+    image: `/Director%20of%20sales/Arpana.JPG`,
+    objectPositionTop: true,
   },
   {
     name: "Vinit Chelani",
@@ -30,7 +33,7 @@ export const leadershipProfiles: LeadershipProfile[] = [
   },
   {
     name: "Pulkit Goyal",
-    designation: "Director of Sales",
+    designation: "Vice President",
     image: `/Director%20of%20sales/Pulkit.jpeg`,
   },
 ];
