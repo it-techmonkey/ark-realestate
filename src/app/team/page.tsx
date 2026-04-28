@@ -21,6 +21,7 @@ const vicePresidents = [
     designation: "Vice President",
     image: "/Director%20of%20sales/Arpana.JPG",
     objectPositionTop: true,
+    unoptimized: true,
   },
   { name: "Pulkit Goyal", designation: "Vice President", image: "/Director%20of%20sales/Pulkit.jpeg" },
 ] as const;
@@ -89,6 +90,7 @@ export default function TeamPage() {
                       "objectPositionTop" in person && person.objectPositionTop ? "object-cover object-top" : "object-cover"
                     }
                     sizes="(max-width: 768px) 100vw, 33vw"
+                    unoptimized={"unoptimized" in person && person.unoptimized}
                   />
                 </div>
                 <div className="border-t border-white/10 p-4">

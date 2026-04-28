@@ -5,6 +5,8 @@ export type LeadershipProfile = {
   image: string;
   /** Anchor crop to top so heads are not clipped in portrait frames */
   objectPositionTop?: boolean;
+  /** Bypass optimization for problematic source encodings on live */
+  unoptimized?: boolean;
 };
 
 const LEADERS_BASE = "/final%20images/Leaders";
@@ -25,6 +27,7 @@ export const leadershipProfiles: LeadershipProfile[] = [
     designation: "Vice President",
     image: `/Director%20of%20sales/Arpana.JPG`,
     objectPositionTop: true,
+    unoptimized: true,
   },
   {
     name: "Vinit Chelani",
