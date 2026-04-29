@@ -148,6 +148,7 @@ export default function EventsPage() {
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 360px"
                       priority={i === 0}
+                      unoptimized
                     />
                   </div>
 

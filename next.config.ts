@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
     "*": ["public/ImagesC/**/*"],
   },
   images: {
+    // Vercel was intermittently failing optimized image responses on live.
+    // Serve original image URLs directly to keep all assets visible.
+    unoptimized: true,
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "www.figma.com" },
