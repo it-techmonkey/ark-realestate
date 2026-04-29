@@ -12,7 +12,7 @@ const directorOfSales = [
   { name: "Nikhil Chandani", designation: "Director of Sales", image: "/Director%20of%20sales/Nikhil.JPG" },
   { name: "Sumitra Nayar", designation: "Director of Sales", image: "/Director%20of%20sales/Sumitra.JPG" },
   { name: "Aarthi", designation: "International Director of Sales", image: "/Director%20of%20sales/Arti.jpeg" },
-  { name: "Pulkit Goyal", designation: "International Sales", image: "/Director%20of%20sales/Pulkit.jpeg" },
+  { name: "Pulkit Goyal", designation: "International Director of Sales", image: "/Director%20of%20sales/Pulkit.jpeg" },
   { name: "Krishna Kumar", designation: "Director of Sales", image: "/Director%20of%20sales/Krishna.jpeg" },
 ] as const;
 
