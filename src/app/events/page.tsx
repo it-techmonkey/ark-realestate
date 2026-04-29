@@ -16,6 +16,27 @@ type EventListing = {
 
 const events: EventListing[] = [
   {
+    title: "Le Royal Meridien Property Showcase",
+    dates: ["2026-05-09"],
+    scheduleSummary: "One-day exhibition — detailed slots shared after registration",
+    location: "Le Royal Meridien Abu Dhabi — Abu Dhabi, United Arab Emirates",
+    excerpt:
+      "Join ARK Vision at Le Royal Meridien Abu Dhabi for curated property showcases, on-ground advisory, and tailored investment conversations.",
+    imageSrc:
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=960&q=80",
+  },
+  {
+    title: "Fairmont Dubai Local Property Event",
+    dates: ["2026-05-16", "2026-05-17"],
+    scheduleSummary: "Two-day event — session details shared with confirmed guests",
+    location:
+      "Fairmont Dubai, Sheikh Zayed Road, Trade Centre — Dubai, United Arab Emirates",
+    excerpt:
+      "A focused weekend event at Fairmont Dubai featuring premium project showcases, expert consultations, and private guidance from the ARK Vision team.",
+    imageSrc:
+      "https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?w=960&q=80",
+  },
+  {
     title: "Dubai's Biggest Property Expo — Multi-developer × ARK Vision Real Estate",
     dates: ["2026-04-25", "2026-04-26"],
     scheduleSummary:
@@ -103,6 +124,9 @@ export default function EventsPage() {
             >
               Upcoming <span className="text-[#c9a84c]">Events</span>
             </h1>
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/55 md:text-base">
+              Discover our local UAE gatherings and reserve your place for upcoming property showcases.
+            </p>
           </Reveal>
         </div>
       </section>
@@ -128,6 +152,9 @@ export default function EventsPage() {
                   </div>
 
                   <div className="flex flex-1 flex-col justify-center gap-6 p-6 md:gap-7 md:p-8 lg:p-10">
+                    <div className="w-fit rounded-full border border-[#c9a84c]/40 bg-[#c9a84c]/10 px-3 py-1 text-[10px] uppercase tracking-[2px] text-[#e2c779]">
+                      Local Event
+                    </div>
                     <EventDateStrip dates={ev.dates} />
 
                     <div>

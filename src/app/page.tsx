@@ -22,6 +22,7 @@ import {
 import HomeBuyingKnowAccordion from "@/components/HomeBuyingKnowAccordion";
 import TestimonialVideos from "@/components/TestimonialVideos";
 import { PremiumSection, TrustMetricRail } from "@/components/PremiumSection";
+import ContactInquiryForm from "@/components/ContactInquiryForm";
 import { blogPosts as landingBlogPosts } from "@/data/blogPosts";
 import {
   getPropertyListingsByProjectIds,
@@ -571,48 +572,7 @@ export default async function HomePage() {
           <div className="card-premium rounded-lg border border-white/10 bg-black/30 p-6 sm:p-8 md:p-12">
             <h3 className="font-serif text-xl font-medium text-white/90">Private Inquiry Form</h3>
             <div className="mt-6 h-px bg-white/10" />
-            <form className="mt-8 space-y-6">
-              <div className="grid gap-6 md:grid-cols-2">
-                <div>
-                  <label className="block text-xs text-white/60">Full Name</label>
-                  <input
-                    type="text"
-                    placeholder="Your full name"
-                    className="mt-2 w-full border-b border-white/20 bg-transparent py-2 text-white/80 transition-colors duration-300 placeholder:text-white/40 focus:border-[#c9a84c] focus:outline-none"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs text-white/60">Email Address</label>
-                  <input
-                    type="email"
-                    placeholder="your@email.com"
-                    className="mt-2 w-full border-b border-white/20 bg-transparent py-2 text-white/80 transition-colors duration-300 placeholder:text-white/40 focus:border-[#c9a84c] focus:outline-none"
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="block text-xs text-white/60">Phone Number</label>
-                <input
-                  type="tel"
-                  placeholder="+971 50 000 0000"
-                  className="mt-2 w-full border-b border-white/20 bg-transparent py-2 text-white/80 placeholder:text-white/40 focus:border-[#c9a84c] focus:outline-none"
-                />
-              </div>
-              <div>
-                <label className="block text-xs text-white/60">Your Requirements</label>
-                <textarea
-                  placeholder="Describe your ideal property..."
-                  rows={4}
-                  className="mt-2 w-full border-b border-white/20 bg-transparent py-2 text-white/80 transition-colors duration-300 placeholder:text-white/40 focus:border-[#c9a84c] focus:outline-none"
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn-magnetic w-full bg-[#c9a84c] py-3 font-medium text-[#060606] transition-all duration-400 hover:bg-[#fcf6ba] hover:shadow-[0_0_30px_-5px_rgba(201,168,76,0.5)] active:scale-[0.98]"
-              >
-                Submit Private Inquiry
-              </button>
-            </form>
+            <ContactInquiryForm />
           </div>
         </FlowParallax>
         </section>
