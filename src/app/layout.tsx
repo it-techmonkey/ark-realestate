@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import RouteLoadingBar from "@/components/RouteLoadingBar";
 import BackToTop from "@/components/BackToTop";
+import ScrollHandler from "@/components/ScrollHandler";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -90,6 +91,7 @@ export default function RootLayout({
       <body className="min-h-screen overflow-x-clip bg-[#080808] text-white/80 antialiased">
         <RouteLoadingBar />
         <Header />
+        <ScrollHandler />
         <main className="pt-16 sm:pt-[72px]">
           <PageTransition>{children}</PageTransition>
         </main>

@@ -3,7 +3,14 @@ import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { Calendar, Clock, MapPin } from "lucide-react";
 
-const DUBAI_TZ = "Asia/Dubai";
+const DEFAULT_EVENT_TZ = "Asia/Dubai";
+const DEFAULT_EVENT_TZ_LABEL = "Dubai (UTC+4)";
+
+/** Noon in this zone — used so calendar day matches the listed date when formatting. */
+const EVENT_DAY_REF_OFFSET: Partial<Record<string, string>> = {
+  "Asia/Dubai": "+04:00",
+  "Asia/Kolkata": "+05:30",
+};
 
 type EventListing = {
   title: string;
@@ -12,9 +19,28 @@ type EventListing = {
   location: string;
   excerpt: string;
   imageSrc: string;
+  /** IANA timezone for date display; defaults to UAE. */
+  timeZone?: string;
+  /** Shown in the date strip, e.g. "Hyderabad (IST)". */
+  timeZoneLabel?: string;
+  /** Pill label above the title; defaults to "Local Event". */
+  badge?: string;
 };
 
 const events: EventListing[] = [
+  {
+    title: "Hyderabad Property Expo",
+    dates: ["2026-05-16", "2026-05-17"],
+    scheduleSummary: "Two-day property exhibition — session timings shared after registration",
+    location: "Hyderabad, Telangana, India",
+    excerpt:
+      "Meet ARK Vision in Hyderabad for a curated Dubai and UAE property expo — developer showcases, investment walkthroughs, and one-to-one advisory across the weekend.",
+    imageSrc:
+      "https://images.unsplash.com/photo-1741545979534-02f59c742730?w=960&q=80",
+    timeZone: "Asia/Kolkata",
+    timeZoneLabel: "Hyderabad (IST)",
+    badge: "Regional event",
+  },
   {
     title: "Le Royal Meridien Property Showcase",
     dates: ["2026-05-09"],
@@ -50,9 +76,14 @@ const events: EventListing[] = [
   },
 ];
 
-function dubaiParts(isoDate: string) {
-  const d = new Date(`${isoDate}T12:00:00+04:00`);
-  const o = { timeZone: DUBAI_TZ };
+function eventDayDate(isoDate: string, timeZone: string): Date {
+  const offset = EVENT_DAY_REF_OFFSET[timeZone] ?? "+04:00";
+  return new Date(`${isoDate}T12:00:00${offset}`);
+}
+
+function eventParts(isoDate: string, timeZone: string) {
+  const d = eventDayDate(isoDate, timeZone);
+  const o = { timeZone };
   return {
     weekdayShort: new Intl.DateTimeFormat("en-US", { ...o, weekday: "short" }).format(d),
     weekdayLong: new Intl.DateTimeFormat("en-US", { ...o, weekday: "long" }).format(d),
@@ -63,9 +94,9 @@ function dubaiParts(isoDate: string) {
   };
 }
 
-function formatDateRangeLabel(dates: string[]): string {
+function formatDateRangeLabel(dates: string[], timeZone: string): string {
   if (dates.length === 0) return "";
-  const parts = dates.map(dubaiParts);
+  const parts = dates.map((iso) => eventParts(iso, timeZone));
   if (dates.length === 1) {
     const p = parts[0];
     return `${p.weekdayLong}, ${p.monthLong} ${p.dayNum}, ${p.year}`;
@@ -78,14 +109,22 @@ function formatDateRangeLabel(dates: string[]): string {
   return `${a.monthLong} ${a.dayNum}, ${a.year} – ${b.monthLong} ${b.dayNum}, ${b.year}`;
 }
 
-function EventDateStrip({ dates }: { dates: string[] }) {
-  const years = [...new Set(dates.map((d) => dubaiParts(d).year))];
+function EventDateStrip({
+  dates,
+  timeZone,
+  timeZoneLabel,
+}: {
+  dates: string[];
+  timeZone: string;
+  timeZoneLabel: string;
+}) {
+  const years = [...new Set(dates.map((d) => eventParts(d, timeZone).year))];
   const yearLine = years.length === 1 ? years[0] : years.join(" · ");
 
   return (
     <div className="flex flex-wrap items-end gap-3 sm:gap-5">
       {dates.map((iso) => {
-        const p = dubaiParts(iso);
+        const p = eventParts(iso, timeZone);
         return (
           <div key={iso} className="flex items-baseline gap-2 border-l-2 border-[#c9a84c]/60 pl-3">
             <span className="text-xs font-medium uppercase tracking-wide text-[#c9a84c]">
@@ -101,7 +140,9 @@ function EventDateStrip({ dates }: { dates: string[] }) {
           </div>
         );
       })}
-      <span className="w-full text-xs text-white/40 sm:w-auto sm:pl-1">{yearLine} · Dubai (UTC+4)</span>
+      <span className="w-full text-xs text-white/40 sm:w-auto sm:pl-1">
+        {yearLine} · {timeZoneLabel}
+      </span>
     </div>
   );
 }
@@ -125,7 +166,8 @@ export default function EventsPage() {
               Upcoming <span className="text-[#c9a84c]">Events</span>
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/55 md:text-base">
-              Discover our local UAE gatherings and reserve your place for upcoming property showcases.
+              Discover upcoming property showcases across the UAE and beyond — reserve your place for curated sessions
+              and on-ground advisory.
             </p>
           </Reveal>
         </div>
@@ -134,8 +176,10 @@ export default function EventsPage() {
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-[1280px] space-y-10 px-6 md:px-20">
           {events.map((ev, i) => {
-            const rangeLabel = formatDateRangeLabel(ev.dates);
-            const weekdayLine = ev.dates.map((iso) => dubaiParts(iso).weekdayLong).join(", ");
+            const tz = ev.timeZone ?? DEFAULT_EVENT_TZ;
+            const tzLabel = ev.timeZoneLabel ?? DEFAULT_EVENT_TZ_LABEL;
+            const rangeLabel = formatDateRangeLabel(ev.dates, tz);
+            const weekdayLine = ev.dates.map((iso) => eventParts(iso, tz).weekdayLong).join(", ");
 
             return (
               <Reveal key={ev.title} delayMs={i * 60}>
@@ -154,9 +198,9 @@ export default function EventsPage() {
 
                   <div className="flex flex-1 flex-col justify-center gap-6 p-6 md:gap-7 md:p-8 lg:p-10">
                     <div className="w-fit rounded-full border border-[#c9a84c]/40 bg-[#c9a84c]/10 px-3 py-1 text-[10px] uppercase tracking-[2px] text-[#e2c779]">
-                      Local Event
+                      {ev.badge ?? "Local Event"}
                     </div>
-                    <EventDateStrip dates={ev.dates} />
+                    <EventDateStrip dates={ev.dates} timeZone={tz} timeZoneLabel={tzLabel} />
 
                     <div>
                       <h2

@@ -5,21 +5,37 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import FlowParallax from "@/components/FlowParallax";
 
-const testimonials = Array.from({ length: 9 }, (_, index) => ({
-  id: index + 1,
-  imageSrc: `/testimonial/${index + 1}.jpeg`,
-}));
+type TestimonialItem =
+  | { id: number; kind: "image"; imageSrc: string }
+  | { id: number; kind: "video"; videoSrc: string };
+
+const testimonials: TestimonialItem[] = [
+  ...Array.from({ length: 9 }, (_, index) => ({
+    id: index + 1,
+    kind: "image" as const,
+    imageSrc: `/testimonial/${index + 1}.jpeg`,
+  })),
+  {
+    id: 10,
+    kind: "video" as const,
+    /** H.264 MP4; original `.MOV` is HEVC and will not play in most non-Safari browsers. */
+    videoSrc: "/testimonial/Vid.mp4",
+  },
+];
 
 export default function TestimonialVideos() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [orientationByImage, setOrientationByImage] = useState<Record<string, "portrait" | "landscape">>({});
+  const [orientationByVideo, setOrientationByVideo] = useState<Record<string, "portrait" | "landscape">>({});
 
   useEffect(() => {
     let cancelled = false;
     const nextOrientation: Record<string, "portrait" | "landscape"> = {};
 
+    const imageItems = testimonials.filter((item): item is Extract<TestimonialItem, { kind: "image" }> => item.kind === "image");
+
     Promise.all(
-      testimonials.map(
+      imageItems.map(
         (item) =>
           new Promise<void>((resolve) => {
             const img = new window.Image();
@@ -51,8 +67,11 @@ export default function TestimonialVideos() {
     setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
-  const activeImage = testimonials[activeIndex].imageSrc;
-  const activeOrientation = orientationByImage[activeImage] ?? "portrait";
+  const activeItem = testimonials[activeIndex];
+  const activeOrientation =
+    activeItem.kind === "video"
+      ? (orientationByVideo[activeItem.videoSrc] ?? "portrait")
+      : (orientationByImage[activeItem.imageSrc] ?? "portrait");
 
   return (
     <section className="relative overflow-hidden border-b border-[#C5A059]/40 bg-[#050505] py-24 md:py-48">
@@ -86,21 +105,40 @@ export default function TestimonialVideos() {
                 : "w-full max-w-[340px] aspect-[3/4]"
             }`}
           >
-            <Image
-              src={activeImage}
-              alt={`Testimonial ${testimonials[activeIndex].id}`}
-              fill
-              className="object-contain bg-black"
-              sizes="(max-width: 768px) 100vw, 900px"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+            {activeItem.kind === "video" ? (
+              <video
+                key={activeItem.videoSrc}
+                className="absolute inset-0 h-full w-full bg-black object-contain"
+                controls
+                playsInline
+                preload="auto"
+                onLoadedMetadata={(e) => {
+                  const el = e.currentTarget;
+                  setOrientationByVideo((prev) => ({
+                    ...prev,
+                    [activeItem.videoSrc]: el.videoHeight > el.videoWidth ? "portrait" : "landscape",
+                  }));
+                }}
+              >
+                <source src={activeItem.videoSrc} type="video/mp4" />
+              </video>
+            ) : (
+              <Image
+                src={activeItem.imageSrc}
+                alt={`Testimonial ${activeItem.id}`}
+                fill
+                className="object-contain bg-black"
+                sizes="(max-width: 768px) 100vw, 900px"
+              />
+            )}
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/55 via-transparent to-transparent" />
           </div>
 
           <button
             type="button"
             onClick={prevSlide}
             className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/45 text-white/80 transition hover:border-[#c9a84c] hover:text-[#c9a84c]"
-            aria-label="Previous testimonial image"
+            aria-label="Previous testimonial"
           >
             <ChevronLeft size={20} />
           </button>
@@ -108,7 +146,7 @@ export default function TestimonialVideos() {
             type="button"
             onClick={nextSlide}
             className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/45 text-white/80 transition hover:border-[#c9a84c] hover:text-[#c9a84c]"
-            aria-label="Next testimonial image"
+            aria-label="Next testimonial"
           >
             <ChevronRight size={20} />
           </button>
