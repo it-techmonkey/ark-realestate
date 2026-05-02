@@ -10,17 +10,17 @@ type TestimonialItem =
   | { id: number; kind: "video"; videoSrc: string };
 
 const testimonials: TestimonialItem[] = [
-  ...Array.from({ length: 9 }, (_, index) => ({
-    id: index + 1,
-    kind: "image" as const,
-    imageSrc: `/testimonial/${index + 1}.jpeg`,
-  })),
   {
-    id: 10,
+    id: 1,
     kind: "video" as const,
     /** H.264 MP4; original `.MOV` is HEVC and will not play in most non-Safari browsers. */
     videoSrc: "/testimonial/Vid.mp4",
   },
+  ...Array.from({ length: 9 }, (_, index) => ({
+    id: index + 2,
+    kind: "image" as const,
+    imageSrc: `/testimonial/${index + 1}.jpeg`,
+  })),
 ];
 
 export default function TestimonialVideos() {
