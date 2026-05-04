@@ -78,9 +78,21 @@ export default function Footer() {
       </div>
       {/* Bottom bar with section divider */}
       <div className="section-divider mx-auto mt-12 max-w-[1280px]" />
-      <p className="mt-6 text-center text-[10px] uppercase tracking-[3px] text-white/30">
-        © {new Date().getFullYear()} ARK Vision International. All rights reserved.
-      </p>
+      <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-6">
+        <Link
+          href="/privacy-policy"
+          className="text-[10px] uppercase tracking-[3px] text-white/45 transition-colors hover:text-[#c9a84c]"
+        >
+          Privacy policy
+        </Link>
+        <span className="hidden text-white/20 sm:inline" aria-hidden>
+          ·
+        </span>
+        <p className="text-center text-[10px] uppercase tracking-[3px] text-white/30">
+          © {new Date().getFullYear()} ARK Vision International. All rights
+          reserved.
+        </p>
+      </div>
     </footer>
   );
 }
