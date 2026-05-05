@@ -29,6 +29,18 @@ type EventListing = {
 
 const events: EventListing[] = [
   {
+    title: "24 May Kolkata - ITC Royal Bengal",
+    dates: ["2026-05-24"],
+    scheduleSummary: "24 May",
+    location: "ITC Royal Bengal, Kolkata",
+    excerpt: "24 May Kolkata - ITC Royal Bengal",
+    imageSrc:
+      "https://images.unsplash.com/photo-1571679654681-ba01b9e1e117?fm=jpg&q=80&w=1600&auto=format&fit=crop",
+    timeZone: "Asia/Kolkata",
+    timeZoneLabel: "Kolkata (IST)",
+    badge: "Regional event",
+  },
+  {
     title: "Hyderabad Property Expo",
     dates: ["2026-05-16", "2026-05-17"],
     scheduleSummary: "Two-day property exhibition — session timings shared after registration",
