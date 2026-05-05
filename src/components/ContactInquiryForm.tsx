@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
-import { INQUIRE_WHATSAPP_E164 } from "@/lib/inquire";
 
 export default function ContactInquiryForm() {
   const [name, setName] = useState("");
@@ -24,16 +23,7 @@ export default function ContactInquiryForm() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const lines = [
-      "Hello, I would like to submit a private inquiry.",
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Phone: ${phone || "-"}`,
-      `Requirements: ${requirements}`,
-    ];
-    const text = lines.join("\n");
-    const url = `https://wa.me/${INQUIRE_WHATSAPP_E164}?text=${encodeURIComponent(text)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
+    window.location.href = mailtoHref;
   };
 
   return (
