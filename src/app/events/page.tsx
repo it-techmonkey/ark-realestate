@@ -1,10 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
-import { Calendar, Clock, MapPin } from "lucide-react";
+import { Calendar, Clock, MapPin, Play } from "lucide-react";
 
 const DEFAULT_EVENT_TZ = "Asia/Dubai";
 const DEFAULT_EVENT_TZ_LABEL = "Dubai (UTC+4)";
+const IMTIAZ_VIDEO_SRC = "/video/imtiaz%2001.mp4";
+const IMTIAZ_WHATSAPP_URL = "https://wa.me/971523557000";
 
 /** Noon in this zone — used so calendar day matches the listed date when formatting. */
 const EVENT_DAY_REF_OFFSET: Partial<Record<string, string>> = {
@@ -181,6 +183,62 @@ export default function EventsPage() {
               Discover upcoming property showcases across the UAE and beyond — reserve your place for curated sessions
               and on-ground advisory.
             </p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="border-b border-white/10 py-12 md:py-16">
+        <div className="mx-auto max-w-[1280px] px-6 md:px-20">
+          <Reveal>
+            <article className="overflow-hidden rounded-lg border border-white/10 bg-white/[0.03] md:flex md:flex-row-reverse">
+              <Link
+                href={IMTIAZ_WHATSAPP_URL}
+                className="group relative aspect-video w-full shrink-0 overflow-hidden bg-black md:w-[58%]"
+                aria-label="Open WhatsApp chat for Imtiaz video"
+              >
+                <video
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                >
+                  <source src={IMTIAZ_VIDEO_SRC} type="video/mp4" />
+                </video>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                  <div className="flex items-center gap-2 rounded-full border border-white/20 bg-black/35 px-4 py-2 text-[10px] uppercase tracking-[3px] text-white/80 backdrop-blur-sm transition group-hover:border-[#c9a84c]/60 group-hover:text-[#fcf6ba]">
+                    <Play size={14} fill="currentColor" aria-hidden />
+                    Tap to WhatsApp
+                  </div>
+                </div>
+              </Link>
+
+              <div className="flex flex-1 flex-col justify-center gap-5 p-6 md:p-8 lg:p-10">
+                <div className="w-fit rounded-full border border-[#c9a84c]/40 bg-[#c9a84c]/10 px-3 py-1 text-[10px] uppercase tracking-[2px] text-[#e2c779]">
+                  Featured video
+                </div>
+                <div className="flex items-center gap-3 text-[#c9a84c]">
+                  <Play size={16} fill="currentColor" aria-hidden />
+                  <span className="text-[10px] uppercase tracking-[3px] text-white/45">
+                    Imtiaz moment
+                  </span>
+                </div>
+                <div>
+                  <h2
+                    className="font-serif text-xl font-medium leading-snug text-white/90 md:text-2xl"
+                    style={{ fontFamily: "var(--font-serif)" }}
+                  >
+                    Imtiaz video highlight
+                  </h2>
+                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/55">
+                    Added from <code className="text-white/75">public/video</code> and placed
+                    into Events as a featured media block. Use controls to play the full clip.
+                  </p>
+                </div>
+              </div>
+            </article>
           </Reveal>
         </div>
       </section>

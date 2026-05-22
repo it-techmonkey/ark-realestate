@@ -23,6 +23,7 @@ const AFFORDABLE_MAX = (categoriesConfig as { affordableMaxPriceAED?: number }).
 const LUXURY_DEV_NAMES = (categoriesConfig as { luxuryDeveloperNames?: string[] }).luxuryDeveloperNames ?? [];
 const AFFORDABLE_DEV_NAMES = (categoriesConfig as { affordableDeveloperNames?: string[] }).affordableDeveloperNames ?? [];
 const TOP_CATEGORY_PROJECT_PRIORITY = (categoriesConfig as { topCategoryProjectPriority?: Record<string, string[]> }).topCategoryProjectPriority ?? {};
+const FEATURED_PROJECT_START_ORDER = (categoriesConfig as { featuredProjectStartOrder?: string[] }).featuredProjectStartOrder ?? [];
 const LUXURY_PROJECT_SLUGS = new Set(
   ((categoriesConfig as { luxuryProjectSlugs?: string[] }).luxuryProjectSlugs ?? []).map((s) => s.toLowerCase().trim())
 );
@@ -55,6 +56,14 @@ function deterministicMixKey(project: any): number {
     h = Math.imul(h, 16777619);
   }
   return h >>> 0;
+}
+
+function featuredStartRank(project: any): number {
+  const slug = (project?.slug || '').toString().toLowerCase().trim();
+  const idx = FEATURED_PROJECT_START_ORDER.findIndex(
+    (s) => (s || '').toLowerCase().trim() === slug
+  );
+  return idx < 0 ? Number.MAX_SAFE_INTEGER : idx;
 }
 
 /**
@@ -499,6 +508,9 @@ export function runCredencePipeline(searchParams: URLSearchParams): CredencePipe
     //    (deterministic hash, not Emaar-then-Nakheel) → non-priority still by dev rank tie-break → price/date or description
     if (sortBy) {
       items.sort((a: any, b: any) => {
+        const startA = featuredStartRank(a);
+        const startB = featuredStartRank(b);
+        if (startA !== startB) return startA - startB;
         const bucketA = isPriorityDeveloperProject(a?.builder || '') ? 0 : 1;
         const bucketB = isPriorityDeveloperProject(b?.builder || '') ? 0 : 1;
         if (bucketA !== bucketB) return bucketA - bucketB;
@@ -536,6 +548,9 @@ export function runCredencePipeline(searchParams: URLSearchParams): CredencePipe
     } else {
       // Default ranking keeps richer records first.
       items.sort((a: any, b: any) => {
+        const startA = featuredStartRank(a);
+        const startB = featuredStartRank(b);
+        if (startA !== startB) return startA - startB;
         const bucketA = isPriorityDeveloperProject(a?.builder || '') ? 0 : 1;
         const bucketB = isPriorityDeveloperProject(b?.builder || '') ? 0 : 1;
         if (bucketA !== bucketB) return bucketA - bucketB;

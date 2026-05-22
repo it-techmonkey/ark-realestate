@@ -1,5 +1,6 @@
 {
   "affordableMaxPriceAED": 1500000,
+  "featuredProjectStartOrder": ["raw-district-by-imtiaz"],
   "luxuryProjectSlugs": [
     "mercedes-benz-places-by-binghatti",
     "burj-azizi",
@@ -209,6 +210,7 @@
       "Verde by Vision"
     ],
     "off-plan": [
+      "Raw District by Imtiaz",
       "Sea Legend One",
       "Sea legend one BY MVS real estate",
       "Capital Horizon Terraces",
@@ -223,6 +225,7 @@
       "Verde by Vision"
     ],
     "affordable": [
+      "Raw District by Imtiaz",
       "Azizi Venice",
       "The Grandala",
       "Enso Amber",

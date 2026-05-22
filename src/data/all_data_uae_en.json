@@ -2,6 +2,250 @@
   "data": {
     "items": [
       {
+        "id": 5954,
+        "city_id": 1,
+        "slug": "raw-district-by-imtiaz",
+        "weight": 999,
+        "title": "Raw District by Imtiaz",
+        "type": "project",
+        "latitude": 24.9852,
+        "longitude": 55.0916,
+        "logo": {
+          "id": 5954001,
+          "hash": "raw-district-imtiaz-logo",
+          "src": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800",
+          "logo": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400"
+        },
+        "cover": {
+          "id": 5954002,
+          "hash": "raw-district-imtiaz-cover",
+          "src": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1400",
+          "logo": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600"
+        },
+        "construction_percent": "0",
+        "construction_inspection_date": "2029-06-30 00:00:00",
+        "construction_percent_out_of_plan": null,
+        "agent_fee_value": "5.00",
+        "builder": "Imtiaz Developments",
+        "source_details": {
+          "source": "Alnair",
+          "headline": "Imtiaz Launches on Sheikh Zayed Road - Raw District",
+          "developer_since": 1993,
+          "building_count": 4,
+          "building_type": "mid-rise towers",
+          "furnishing": "Fully furnished units",
+          "location_detail": "Jabal Ali, Sheikh Zayed Road, Dubai",
+          "metro": "Life Pharmacy station - walking distance",
+          "completion_window": "Q1-Q2 2029",
+          "eoi_closes": "2026-05-26",
+          "deposit_type": "Refundable EOI deposit locks pricing",
+          "price_per_sqft_aed": {
+            "from": 1399,
+            "to": 1714
+          },
+          "service_charge_aed_per_sqft": 18,
+          "commission_advance": {
+            "available": true,
+            "advance_percent": 84,
+            "paid_after": "SPA signing",
+            "payout_timing": "Within a few days",
+            "benefit": "No 1.5-2 month developer payout wait"
+          },
+          "payment_plans": [
+            {
+              "name": "50/50",
+              "post_handover": false,
+              "schedule": [
+                "20% now",
+                "30% during construction across 6 installments",
+                "50% on handover"
+              ]
+            },
+            {
+              "name": "60/40 post-handover",
+              "post_handover": true,
+              "extends_to": "2032-03",
+              "schedule": [
+                "20% now",
+                "35% during construction",
+                "5% on handover",
+                "40% post-handover in quarterly payments through March 2032"
+              ]
+            }
+          ],
+          "unit_mix": [
+            {
+              "type": "Studio",
+              "price_from_aed": 649000,
+              "area_sqft_approx": 380,
+              "eoi_aed": 50000
+            },
+            {
+              "type": "1 BR",
+              "price_from_aed": 1069000,
+              "area_sqft_approx": 720,
+              "eoi_aed": 80000
+            },
+            {
+              "type": "2 BR",
+              "price_from_aed": 1489000,
+              "area_sqft_approx": 1054,
+              "eoi_aed": 100000
+            },
+            {
+              "type": "3 BR",
+              "price_from_aed": 1959000,
+              "area_sqft_approx": 1400,
+              "eoi_aed": 100000
+            },
+            {
+              "type": "Office",
+              "price_from_aed": 1200000,
+              "area_sqft_approx": 700,
+              "eoi_aed": 100000
+            }
+          ],
+          "investment_case": {
+            "tenant_base": "JAFZA has 11,000 companies within walking distance",
+            "demand_drivers": [
+              "JAFZA corporate tenant base",
+              "Al Maktoum International Airport expansion nearby",
+              "Metro-connected Sheikh Zayed Road position"
+            ],
+            "rental_example": {
+              "unit": "1 BR",
+              "purchase_price_aed": 1120000,
+              "pre_handover_payment_percent": 60,
+              "expected_rent_from": "Q2 2029",
+              "expected_annual_rent_aed": 90000,
+              "post_handover_payments_per_year_aed": 149400,
+              "annual_service_charge_estimate_aed": 13000,
+              "effective_paid_by_2032_aed": 934000,
+              "developer_price_reference_aed": 1165000,
+              "discount_percent": 20,
+              "roi_percent": 8.2
+            },
+            "target_buyers": [
+              "Investors targeting 8%+ net yield in a corporate-tenant district",
+              "Clients wanting metro-connected Sheikh Zayed Road positioning below AED 1,800 per sq ft",
+              "Buyers comparing Business Bay and Arjan who want stronger tenant quality and better payment structure"
+            ]
+          }
+        },
+        "user_interaction": {
+          "is_bookmark": false,
+          "is_selection": false
+        },
+        "catalogs": {
+          "project_badges": [
+            366
+          ],
+          "project_sales_status": [
+            5
+          ]
+        },
+        "district": {
+          "id": 140,
+          "title": "Jabal Ali"
+        },
+        "photos": [
+          {
+            "id": 5954003,
+            "hash": "raw-district-gallery-1",
+            "src": "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=1400",
+            "logo": "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600",
+            "size": 0,
+            "src_video": null
+          },
+          {
+            "id": 5954004,
+            "hash": "raw-district-gallery-2",
+            "src": "https://images.unsplash.com/photo-1528702748617-c64d49f918af?w=1400",
+            "logo": "https://images.unsplash.com/photo-1528702748617-c64d49f918af?w=600",
+            "size": 0,
+            "src_video": null
+          },
+          {
+            "id": 5954005,
+            "hash": "raw-district-gallery-3",
+            "src": "https://images.unsplash.com/photo-1546412414-e1885259563a?w=1400",
+            "logo": "https://images.unsplash.com/photo-1546412414-e1885259563a?w=600",
+            "size": 0,
+            "src_video": null
+          }
+        ],
+        "statistics": {
+          "transactions": {
+            "110": 1,
+            "111": 1,
+            "112": 1,
+            "113": 1
+          },
+          "rents": null,
+          "total": {
+            "count": 6,
+            "price_from": 649000,
+            "price_to": 2500000,
+            "price_m2_from": 15059,
+            "price_m2_to": 18449,
+            "units_count": 0,
+            "units_resale_count": 0,
+            "units_area_mt": "0",
+            "units_max_floor": 0
+          },
+          "units": {
+            "110": {
+              "count": 1,
+              "price_from": 649000,
+              "price_to": 649000,
+              "price_m2_from": 18378,
+              "price_m2_to": 18378,
+              "area_from": 35.3,
+              "area_to": 35.3
+            },
+            "111": {
+              "count": 1,
+              "price_from": 1069000,
+              "price_to": 1120000,
+              "price_m2_from": 15979,
+              "price_m2_to": 16741,
+              "area_from": 66.9,
+              "area_to": 66.9
+            },
+            "112": {
+              "count": 1,
+              "price_from": 1489000,
+              "price_to": 1489000,
+              "price_m2_from": 15209,
+              "price_m2_to": 15209,
+              "area_from": 97.9,
+              "area_to": 97.9
+            },
+            "113": {
+              "count": 1,
+              "price_from": 1959000,
+              "price_to": 1959000,
+              "price_m2_from": 15058,
+              "price_m2_to": 15058,
+              "area_from": 130.1,
+              "area_to": 130.1
+            },
+            "462": {
+              "count": 1,
+              "price_from": 1200000,
+              "price_to": 1200000,
+              "price_m2_from": 18462,
+              "price_m2_to": 18462,
+              "area_from": 65.0,
+              "area_to": 65.0
+            }
+          },
+          "villas": null
+        },
+        "created_at": "2026-05-12T00:00:00.000Z",
+        "updated_at": "2026-05-13T00:00:00.000Z"
+      },
+      {
         "id": 3869,
         "city_id": 1,
         "slug": "olivia-gardens-residence",

@@ -14,6 +14,11 @@ const TOP = (
     topCategoryProjectPriority?: Record<string, string[]>;
   }
 ).topCategoryProjectPriority ?? {};
+const FEATURED_START = (
+  categoriesConfig as {
+    featuredProjectStartOrder?: string[];
+  }
+).featuredProjectStartOrder ?? [];
 
 function normalizeProjectLabel(value: string): string {
   return (value || "")
@@ -55,6 +60,14 @@ function deterministicMixKey(listing: PropertyListing): number {
   return h >>> 0;
 }
 
+function featuredStartRank(slug: string): number {
+  const normalized = (slug || "").toLowerCase().trim();
+  const idx = FEATURED_START.findIndex(
+    (s) => (s || "").toLowerCase().trim() === normalized
+  );
+  return idx < 0 ? Number.MAX_SAFE_INTEGER : idx;
+}
+
 export type CredenceSortKey =
   | ""
   | "min_price"
@@ -72,6 +85,9 @@ export function sortListingsCredence(
 
   if (sortBy) {
     list.sort((a, b) => {
+      const startA = featuredStartRank(a.slug);
+      const startB = featuredStartRank(b.slug);
+      if (startA !== startB) return startA - startB;
       const bucketA = isPriorityDeveloperProject(a.builder) ? 0 : 1;
       const bucketB = isPriorityDeveloperProject(b.builder) ? 0 : 1;
       if (bucketA !== bucketB) return bucketA - bucketB;
@@ -111,6 +127,9 @@ export function sortListingsCredence(
   }
 
   list.sort((a, b) => {
+    const startA = featuredStartRank(a.slug);
+    const startB = featuredStartRank(b.slug);
+    if (startA !== startB) return startA - startB;
     const bucketA = isPriorityDeveloperProject(a.builder) ? 0 : 1;
     const bucketB = isPriorityDeveloperProject(b.builder) ? 0 : 1;
     if (bucketA !== bucketB) return bucketA - bucketB;
