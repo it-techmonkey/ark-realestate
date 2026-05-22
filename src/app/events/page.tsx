@@ -31,6 +31,30 @@ type EventListing = {
 
 const events: EventListing[] = [
   {
+    title: "6 & 7 June Bangalore - ITC Windsor",
+    dates: ["2026-06-06", "2026-06-07"],
+    scheduleSummary: "Two-day property exhibition — session timings shared after registration",
+    location: "ITC Windsor, A Luxury Collection Hotel, Bangalore",
+    excerpt: "Meet ARK Vision in Bangalore for a curated Dubai and UAE property expo — developer showcases, investment walkthroughs, and one-to-one advisory across the weekend.",
+    imageSrc:
+      "https://plus.unsplash.com/premium_photo-1697729447666-c39f50d595ea?q=80&w=1471&auto=format&fit=crop",
+    timeZone: "Asia/Kolkata",
+    timeZoneLabel: "Bangalore (IST)",
+    badge: "Regional event",
+  },
+  {
+    title: "30 & 31 May Indore - Sayaji Hotel",
+    dates: ["2026-05-30", "2026-05-31"],
+    scheduleSummary: "Two-day property exhibition — session timings shared after registration",
+    location: "Sayaji Hotel, Indore",
+    excerpt: "Meet ARK Vision in Indore for a curated Dubai and UAE property expo — developer showcases, investment walkthroughs, and one-to-one advisory across the weekend.",
+    imageSrc:
+      "https://images.unsplash.com/photo-1775585571570-5c937c7c2dd5?q=80&w=687&auto=format&fit=crop",
+    timeZone: "Asia/Kolkata",
+    timeZoneLabel: "Indore (IST)",
+    badge: "Regional event",
+  },
+  {
     title: "24 May Kolkata - ITC Royal Bengal",
     dates: ["2026-05-24"],
     scheduleSummary: "24 May",
