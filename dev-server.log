@@ -1,0 +1,14 @@
+
+> web@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.7 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.167.159.94:3000
+
+✓ Starting...
+Creating turbopack project {
+  dir: 'C:\\Users\\asus\\Desktop\\Portfolio\\Tech Monkeys\\Neuroholistic\\ark-realestate\\ark-realestate',
+  testMode: true
+}
+✓ Ready in 2.1s

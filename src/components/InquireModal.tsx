@@ -3,6 +3,7 @@
 import { useEffect, useId, useState } from "react";
 import { buildInquireWhatsAppUrl } from "@/lib/inquire";
 import type { PropertyListing } from "@/lib/propertyData";
+import { submitWeb3Form } from "@/lib/web3forms";
 
 type Props = {
   listing: PropertyListing | null;
@@ -15,6 +16,8 @@ export default function InquireModal({ listing, onClose }: Props) {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     if (!listing) return;
@@ -33,7 +36,7 @@ export default function InquireModal({ listing, onClose }: Props) {
 
   if (!listing) return null;
 
-  const submitWhatsApp = () => {
+  const submitWhatsApp = async () => {
     const url = buildInquireWhatsAppUrl({
       propertyTitle: listing.title,
       slug: listing.slug,
@@ -44,7 +47,41 @@ export default function InquireModal({ listing, onClose }: Props) {
       phone: phone.trim() || undefined,
       message: message.trim() || undefined,
     });
-    window.open(url, "_blank", "noopener,noreferrer");
+    const whatsappWindow = window.open("", "_blank");
+
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      await submitWeb3Form({
+        subject: `Property Inquiry: ${listing.title}`,
+        from_name: "ARK Vision Website",
+        name: name.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+        message: message.trim(),
+        form_type: "Property Inquiry",
+        property: listing.title,
+        property_ref: listing.slug,
+        property_location: listing.location,
+        property_price: listing.price,
+      });
+      if (whatsappWindow) {
+        whatsappWindow.opener = null;
+        whatsappWindow.location.href = url;
+      } else {
+        window.location.href = url;
+      }
+    } catch (error) {
+      whatsappWindow?.close();
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const mailtoHref = `mailto:info@arkvision.ae?subject=${encodeURIComponent(
@@ -120,9 +157,10 @@ export default function InquireModal({ listing, onClose }: Props) {
           <button
             type="button"
             onClick={submitWhatsApp}
+            disabled={isSubmitting}
             className="flex-1 min-w-[140px] border border-[#c9a84c] bg-[#c9a84c]/10 px-4 py-3 text-sm font-light text-[#c9a84c] transition hover:bg-[#c9a84c] hover:text-[#060606]"
           >
-            Continue on WhatsApp
+            {isSubmitting ? "Submitting..." : "Continue on WhatsApp"}
           </button>
           <a
             href={mailtoHref}
@@ -137,6 +175,11 @@ export default function InquireModal({ listing, onClose }: Props) {
           >
             Close
           </button>
+          {submitError && (
+            <p role="status" className="w-full text-xs text-red-300">
+              {submitError}
+            </p>
+          )}
         </div>
       </div>
     </div>

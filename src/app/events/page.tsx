@@ -31,6 +31,16 @@ type EventListing = {
 
 const events: EventListing[] = [
   {
+    title: "6 & 7 June Imtiaz Sales Center",
+    dates: ["2026-06-06", "2026-06-07"],
+    scheduleSummary: "Two-day property exhibition — session timings shared after registration",
+    location:
+      "Imtiaz Sales Center, Suite 303, Park Heights Square 1, Dubai Hills, Dubai, United Arab Emirates",
+    excerpt:
+      "Join ARK Vision at the Imtiaz Sales Center for a curated property exhibition, expert investment guidance, and one-to-one advisory across the weekend.",
+    imageSrc: "/dubai%20image.jpg",
+  },
+  {
     title: "6 & 7 June Bangalore - ITC Windsor",
     dates: ["2026-06-06", "2026-06-07"],
     scheduleSummary: "Two-day property exhibition — session timings shared after registration",
