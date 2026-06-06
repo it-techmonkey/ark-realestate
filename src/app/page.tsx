@@ -22,8 +22,10 @@ import TestimonialVideos from "@/components/TestimonialVideos";
 import { PremiumSection, TrustMetricRail } from "@/components/PremiumSection";
 import ContactInquiryForm from "@/components/ContactInquiryForm";
 import { blogPosts as landingBlogPosts } from "@/data/blogPosts";
+import { propertyOfMonthConfig } from "@/data/propertyOfMonth";
 import {
   getPropertyListingsByProjectIds,
+  getProjectDetailBySlug,
 } from "@/lib/propertyData";
 import { RECENT_LAUNCH_IDS } from "@/lib/recentLaunches";
 
@@ -109,9 +111,13 @@ const IMG = {
 
 export default async function HomePage() {
   const recentLaunches = await getPropertyListingsByProjectIds(RECENT_LAUNCH_IDS);
+  const propertyOfMonth = propertyOfMonthConfig.enabled
+    ? await getProjectDetailBySlug(propertyOfMonthConfig.slug)
+    : null;
+
   return (
     <div className="min-h-screen overflow-x-clip bg-[#050505]">
-      <HomeHero servicePillars={servicePillars} />
+      <HomeHero servicePillars={servicePillars} propertyOfMonth={propertyOfMonth} />
 
       {/* Marquee: not wrapped in Reveal so CSS animation runs immediately */}
       <section className="brand-marquee border-y border-white/10 bg-[#050505] py-12 md:py-20">
