@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, type ReactNode } from "react";
 import HeroBackgroundVideo from "@/components/HeroBackgroundVideo";
+import PropertyOfMonthPopup from "@/components/PropertyOfMonthPopup";
+import type { ProjectDetailPayload } from "@/lib/propertyData";
 
 export type HeroServicePillar = {
   title: string;
@@ -11,7 +13,13 @@ export type HeroServicePillar = {
 
 const HERO_VIDEO_SRC = "/video/hero.mp4";
 
-export default function HomeHero({ servicePillars }: { servicePillars: HeroServicePillar[] }) {
+export default function HomeHero({
+  servicePillars,
+  propertyOfMonth,
+}: {
+  servicePillars: HeroServicePillar[];
+  propertyOfMonth?: ProjectDetailPayload | null;
+}) {
   const sectionRef = useRef<HTMLElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
 
@@ -67,6 +75,7 @@ export default function HomeHero({ servicePillars }: { servicePillars: HeroServi
     >
       <HeroBackgroundVideo src={HERO_VIDEO_SRC} />
       <div className="absolute inset-0 z-[1] bg-gradient-to-t from-[#080808] via-black/55 to-black/20" />
+      <PropertyOfMonthPopup data={propertyOfMonth ?? null} />
       <div className="relative z-[2] flex min-h-[inherit] flex-col px-5 pb-14 pt-28 sm:px-8 sm:pb-20 sm:pt-32 lg:px-20 lg:pb-28 lg:pt-28">
         <div ref={parallaxRef} className="mx-auto flex w-full max-w-[1280px] flex-1 flex-col will-change-transform">
           <div className="flex flex-1 flex-col justify-center py-10 md:py-14 lg:py-20">
