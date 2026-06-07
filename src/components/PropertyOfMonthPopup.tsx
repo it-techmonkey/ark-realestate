@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import type { TouchEvent } from "react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import InquireModal from "@/components/InquireModal";
 import type { ProjectDetailPayload } from "@/lib/propertyData";
@@ -26,6 +27,7 @@ export default function PropertyOfMonthPopup({ data }: Props) {
   const [open, setOpen] = useState(Boolean(data));
   const [activeIndex, setActiveIndex] = useState(0);
   const [inquireOpen, setInquireOpen] = useState(false);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   const images = useMemo(() => {
     if (!data) return [];
@@ -58,6 +60,20 @@ export default function PropertyOfMonthPopup({ data }: Props) {
     setActiveIndex((idx) => (idx === images.length - 1 ? 0 : idx + 1));
   };
 
+  const handleTouchEnd = (event: TouchEvent<HTMLElement>) => {
+    if (touchStartX === null || images.length < 2) return;
+
+    const touchEndX = event.changedTouches[0]?.clientX ?? touchStartX;
+    const deltaX = touchEndX - touchStartX;
+
+    if (Math.abs(deltaX) > 48) {
+      if (deltaX > 0) previousImage();
+      else nextImage();
+    }
+
+    setTouchStartX(null);
+  };
+
   const openInquiry = () => {
     setOpen(false);
     setInquireOpen(true);
@@ -82,7 +98,11 @@ export default function PropertyOfMonthPopup({ data }: Props) {
               <X size={18} />
             </button>
 
-            <section className="relative min-h-[210px] overflow-hidden bg-black sm:min-h-[260px] lg:min-h-[430px]">
+            <section
+              className="relative min-h-[210px] touch-pan-y overflow-hidden bg-black sm:min-h-[260px] lg:min-h-[430px]"
+              onTouchStart={(event) => setTouchStartX(event.touches[0]?.clientX ?? null)}
+              onTouchEnd={handleTouchEnd}
+            >
               <Image
                 src={activeImage}
                 alt={listing.title}
@@ -95,7 +115,7 @@ export default function PropertyOfMonthPopup({ data }: Props) {
 
               {images.length > 1 ? (
                 <>
-                  <div className="absolute inset-x-0 top-1/2 z-20 flex -translate-y-1/2 justify-between px-4">
+                  <div className="absolute inset-x-0 top-1/2 z-20 hidden -translate-y-1/2 justify-between px-4 sm:flex">
                     <button
                       type="button"
                       onClick={previousImage}
@@ -113,7 +133,7 @@ export default function PropertyOfMonthPopup({ data }: Props) {
                       <ChevronRight size={20} />
                     </button>
                   </div>
-                  <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-center gap-2">
+                  <div className="absolute bottom-4 left-4 right-4 z-20 hidden items-center justify-center gap-2 sm:flex">
                     {images.map((src, index) => (
                       <button
                         key={`${src}-${index}`}
@@ -167,7 +187,7 @@ export default function PropertyOfMonthPopup({ data }: Props) {
                 </p>
               ) : null}
 
-              <dl className="mt-4 grid grid-cols-2 gap-2">
+              <dl className="mt-4 hidden grid-cols-2 gap-2 sm:grid">
                 <PopupStat icon={<Building2 size={16} />} label="Developer" value={listing.builder} />
                 <PopupStat icon={<Home size={16} />} label="Type" value={listing.propertyKind} />
                 <PopupStat
@@ -196,7 +216,7 @@ export default function PropertyOfMonthPopup({ data }: Props) {
                 <button
                   type="button"
                   onClick={openInquiry}
-                  className="h-11 flex-1 rounded-lg border border-white/20 bg-white/[0.05] px-5 text-sm font-light text-white/85 transition hover:border-[#c9a84c] hover:text-[#c9a84c]"
+                  className="hidden h-11 flex-1 rounded-lg border border-white/20 bg-white/[0.05] px-5 text-sm font-light text-white/85 transition hover:border-[#c9a84c] hover:text-[#c9a84c] sm:block"
                 >
                   Enquire Now
                 </button>
