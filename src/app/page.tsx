@@ -114,6 +114,13 @@ export default async function HomePage() {
   const propertyOfMonth = propertyOfMonthConfig.enabled
     ? await getProjectDetailBySlug(propertyOfMonthConfig.slug)
     : null;
+  const popularProperties = [
+    ...(propertyOfMonth?.listing ? [propertyOfMonth.listing] : []),
+    ...recentLaunches,
+  ].filter(
+    (prop, index, props) =>
+      props.findIndex((candidate) => candidate.slug === prop.slug) === index
+  );
 
   return (
     <div className="min-h-screen overflow-x-clip bg-[#050505]">
@@ -302,7 +309,7 @@ export default async function HomePage() {
 
             {/* Property Cards Grid */}
             <div className="mx-auto grid max-w-[1120px] grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {recentLaunches.slice(0, 3).map((prop) => (
+              {popularProperties.slice(0, 4).map((prop) => (
                 <div
                   key={prop.slug}
                   className="card-premium group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a0a] transition-all duration-300 hover:border-[#c9a84c]/30"
