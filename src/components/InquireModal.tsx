@@ -8,9 +8,10 @@ import { submitWeb3Form } from "@/lib/web3forms";
 type Props = {
   listing: PropertyListing | null;
   onClose: () => void;
+  placement?: "center" | "top";
 };
 
-export default function InquireModal({ listing, onClose }: Props) {
+export default function InquireModal({ listing, onClose, placement = "center" }: Props) {
   const titleId = useId();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -66,20 +67,15 @@ export default function InquireModal({ listing, onClose }: Props) {
         property_location: listing.location,
         property_price: listing.price,
       });
+    } catch (error) {
+      console.warn("Unable to submit property inquiry before WhatsApp redirect.", error);
+    } finally {
       if (whatsappWindow) {
         whatsappWindow.opener = null;
         whatsappWindow.location.href = url;
       } else {
         window.location.href = url;
       }
-    } catch (error) {
-      whatsappWindow?.close();
-      setSubmitError(
-        error instanceof Error
-          ? error.message
-          : "Something went wrong. Please try again."
-      );
-    } finally {
       setIsSubmitting(false);
     }
   };
@@ -92,7 +88,9 @@ export default function InquireModal({ listing, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm"
+      className={`fixed inset-0 z-[100] flex justify-center bg-black/75 p-4 backdrop-blur-sm ${
+        placement === "top" ? "items-start pt-16 sm:pt-20" : "items-center"
+      }`}
       role="dialog"
       aria-modal="true"
       aria-labelledby={titleId}

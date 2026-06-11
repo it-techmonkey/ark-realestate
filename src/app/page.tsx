@@ -333,10 +333,13 @@ export default async function HomePage() {
                         </span>
                       </div>
 
-                      {/* Favorite Button */}
-                      <button className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white/70 transition-all duration-300 hover:scale-110 hover:bg-[#c9a84c] hover:text-black">
+                      {/* Favorite marker */}
+                      <span
+                        className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white/70 transition-all duration-300 group-hover:scale-110 group-hover:bg-[#c9a84c] group-hover:text-black"
+                        aria-hidden="true"
+                      >
                         <Heart size={16} />
-                      </button>
+                      </span>
 
                       {/* Property Stats - Bottom of Image */}
                       <div className="absolute bottom-0 left-0 right-0 p-4">

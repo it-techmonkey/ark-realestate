@@ -75,7 +75,6 @@ export default function PropertyOfMonthPopup({ data }: Props) {
   };
 
   const openInquiry = () => {
-    setOpen(false);
     setInquireOpen(true);
   };
 
@@ -229,6 +228,7 @@ export default function PropertyOfMonthPopup({ data }: Props) {
       <InquireModal
         listing={inquireOpen ? listing : null}
         onClose={() => setInquireOpen(false)}
+        placement="top"
       />
     </>
   );
