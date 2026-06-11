@@ -23,8 +23,10 @@ type Props = {
   data: ProjectDetailPayload | null;
 };
 
+let hasShownPropertyOfMonthPopup = false;
+
 export default function PropertyOfMonthPopup({ data }: Props) {
-  const [open, setOpen] = useState(Boolean(data));
+  const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [inquireOpen, setInquireOpen] = useState(false);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
@@ -35,6 +37,23 @@ export default function PropertyOfMonthPopup({ data }: Props) {
   }, [data]);
 
   const closePopup = useCallback(() => setOpen(false), []);
+
+  useEffect(() => {
+    if (!data) return;
+    if (hasShownPropertyOfMonthPopup) return;
+
+    let frame = 0;
+    const showPopup = () => {
+      frame = window.requestAnimationFrame(() => setOpen(true));
+    };
+
+    hasShownPropertyOfMonthPopup = true;
+    showPopup();
+
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [data]);
 
   useEffect(() => {
     if (!open) return;
