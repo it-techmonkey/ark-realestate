@@ -41,6 +41,8 @@ const awardImages = [
   "/awards/WhatsApp%20Image%202026-04-09%20at%209.35.43%20PM%20(1).jpeg",
   "/awards/WhatsApp%20Image%202026-04-09%20at%209.35.43%20PM.jpeg",
   "/awards/WhatsApp%20Image%202026-04-09%20at%209.35.42%20PM%20(1).jpeg",
+  "/awards/WhatsApp%20Image%202026-04-09%20at%209.35.41%20PM.jpeg",
+  "/awards/WhatsApp%20Image%202026-04-09%20at%209.35.40%20PM.jpeg",
 ];
 
 const blogPosts = landingBlogPosts.slice(0, 3);
