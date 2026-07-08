@@ -1,0 +1,22 @@
+
+> web@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.7 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.167.159.94:3000
+
+✓ Starting...
+Creating turbopack project {
+  dir: 'C:\\Users\\asus\\Desktop\\Portfolio\\Tech Monkeys\\Neuroholistic\\ark-realestate\\ark-realestate',
+  testMode: true
+}
+✓ Ready in 2.1s
+○ Compiling / ...
+ GET / 200 in 20.2s (compile: 15.6s, render: 4.5s)
+○ Compiling /events ...
+ GET /events 200 in 4.3s (compile: 3.7s, render: 540ms)
+✓ Finished filesystem cache database compaction in 33.0s
+✓ Finished writing to filesystem cache in 36.3s
+✓ Finished filesystem cache database compaction in 19.5s
+[?25h

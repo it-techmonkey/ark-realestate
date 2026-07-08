@@ -1,5 +1,5 @@
 /** Credence-style WhatsApp inquiry (replace with your business number if needed). */
-export const INQUIRE_WHATSAPP_E164 = "971588919223";
+export const INQUIRE_WHATSAPP_E164 = "971556162589";
 
 export function buildInquireWhatsAppUrl(payload: {
   propertyTitle: string;
