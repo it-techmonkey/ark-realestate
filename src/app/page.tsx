@@ -22,8 +22,10 @@ import TestimonialVideos from "@/components/TestimonialVideos";
 import { PremiumSection, TrustMetricRail } from "@/components/PremiumSection";
 import ContactInquiryForm from "@/components/ContactInquiryForm";
 import { blogPosts as landingBlogPosts } from "@/data/blogPosts";
+import { propertyOfMonthConfig } from "@/data/propertyOfMonth";
 import {
   getPropertyListingsByProjectIds,
+  getProjectDetailBySlug,
 } from "@/lib/propertyData";
 import { RECENT_LAUNCH_IDS } from "@/lib/recentLaunches";
 
@@ -39,6 +41,8 @@ const awardImages = [
   "/awards/WhatsApp%20Image%202026-04-09%20at%209.35.43%20PM%20(1).jpeg",
   "/awards/WhatsApp%20Image%202026-04-09%20at%209.35.43%20PM.jpeg",
   "/awards/WhatsApp%20Image%202026-04-09%20at%209.35.42%20PM%20(1).jpeg",
+  "/awards/WhatsApp%20Image%202026-04-09%20at%209.35.41%20PM.jpeg",
+  "/awards/WhatsApp%20Image%202026-04-09%20at%209.35.40%20PM.jpeg",
 ];
 
 const blogPosts = landingBlogPosts.slice(0, 3);
@@ -109,9 +113,20 @@ const IMG = {
 
 export default async function HomePage() {
   const recentLaunches = await getPropertyListingsByProjectIds(RECENT_LAUNCH_IDS);
+  const propertyOfMonth = propertyOfMonthConfig.enabled
+    ? await getProjectDetailBySlug(propertyOfMonthConfig.slug)
+    : null;
+  const popularProperties = [
+    ...(propertyOfMonth?.listing ? [propertyOfMonth.listing] : []),
+    ...recentLaunches,
+  ].filter(
+    (prop, index, props) =>
+      props.findIndex((candidate) => candidate.slug === prop.slug) === index
+  );
+
   return (
     <div className="min-h-screen overflow-x-clip bg-[#050505]">
-      <HomeHero servicePillars={servicePillars} />
+      <HomeHero servicePillars={servicePillars} propertyOfMonth={propertyOfMonth} />
 
       {/* Marquee: not wrapped in Reveal so CSS animation runs immediately */}
       <section className="brand-marquee border-y border-white/10 bg-[#050505] py-12 md:py-20">
@@ -296,7 +311,7 @@ export default async function HomePage() {
 
             {/* Property Cards Grid */}
             <div className="mx-auto grid max-w-[1120px] grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {recentLaunches.slice(0, 3).map((prop) => (
+              {popularProperties.slice(0, 4).map((prop) => (
                 <div
                   key={prop.slug}
                   className="card-premium group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a0a] transition-all duration-300 hover:border-[#c9a84c]/30"
@@ -320,10 +335,13 @@ export default async function HomePage() {
                         </span>
                       </div>
 
-                      {/* Favorite Button */}
-                      <button className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white/70 transition-all duration-300 hover:scale-110 hover:bg-[#c9a84c] hover:text-black">
+                      {/* Favorite marker */}
+                      <span
+                        className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white/70 transition-all duration-300 group-hover:scale-110 group-hover:bg-[#c9a84c] group-hover:text-black"
+                        aria-hidden="true"
+                      >
                         <Heart size={16} />
-                      </button>
+                      </span>
 
                       {/* Property Stats - Bottom of Image */}
                       <div className="absolute bottom-0 left-0 right-0 p-4">

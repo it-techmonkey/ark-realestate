@@ -3,18 +3,22 @@
 import { useEffect, useId, useState } from "react";
 import { buildInquireWhatsAppUrl } from "@/lib/inquire";
 import type { PropertyListing } from "@/lib/propertyData";
+import { submitWeb3Form } from "@/lib/web3forms";
 
 type Props = {
   listing: PropertyListing | null;
   onClose: () => void;
+  placement?: "center" | "top";
 };
 
-export default function InquireModal({ listing, onClose }: Props) {
+export default function InquireModal({ listing, onClose, placement = "center" }: Props) {
   const titleId = useId();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     if (!listing) return;
@@ -33,7 +37,7 @@ export default function InquireModal({ listing, onClose }: Props) {
 
   if (!listing) return null;
 
-  const submitWhatsApp = () => {
+  const submitWhatsApp = async () => {
     const url = buildInquireWhatsAppUrl({
       propertyTitle: listing.title,
       slug: listing.slug,
@@ -44,7 +48,36 @@ export default function InquireModal({ listing, onClose }: Props) {
       phone: phone.trim() || undefined,
       message: message.trim() || undefined,
     });
-    window.open(url, "_blank", "noopener,noreferrer");
+    const whatsappWindow = window.open("", "_blank");
+
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      await submitWeb3Form({
+        subject: `Property Inquiry: ${listing.title}`,
+        from_name: "ARK Vision Website",
+        name: name.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+        message: message.trim(),
+        form_type: "Property Inquiry",
+        property: listing.title,
+        property_ref: listing.slug,
+        property_location: listing.location,
+        property_price: listing.price,
+      });
+    } catch (error) {
+      console.warn("Unable to submit property inquiry before WhatsApp redirect.", error);
+    } finally {
+      if (whatsappWindow) {
+        whatsappWindow.opener = null;
+        whatsappWindow.location.href = url;
+      } else {
+        window.location.href = url;
+      }
+      setIsSubmitting(false);
+    }
   };
 
   const mailtoHref = `mailto:info@arkvision.ae?subject=${encodeURIComponent(
@@ -55,7 +88,9 @@ export default function InquireModal({ listing, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm"
+      className={`fixed inset-0 z-[100] flex justify-center bg-black/75 p-4 backdrop-blur-sm ${
+        placement === "top" ? "items-start pt-16 sm:pt-20" : "items-center"
+      }`}
       role="dialog"
       aria-modal="true"
       aria-labelledby={titleId}
@@ -120,9 +155,10 @@ export default function InquireModal({ listing, onClose }: Props) {
           <button
             type="button"
             onClick={submitWhatsApp}
+            disabled={isSubmitting}
             className="flex-1 min-w-[140px] border border-[#c9a84c] bg-[#c9a84c]/10 px-4 py-3 text-sm font-light text-[#c9a84c] transition hover:bg-[#c9a84c] hover:text-[#060606]"
           >
-            Continue on WhatsApp
+            {isSubmitting ? "Submitting..." : "Continue on WhatsApp"}
           </button>
           <a
             href={mailtoHref}
@@ -137,6 +173,11 @@ export default function InquireModal({ listing, onClose }: Props) {
           >
             Close
           </button>
+          {submitError && (
+            <p role="status" className="w-full text-xs text-red-300">
+              {submitError}
+            </p>
+          )}
         </div>
       </div>
     </div>

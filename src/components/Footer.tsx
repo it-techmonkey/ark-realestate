@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { FormEvent, useState } from "react";
+import { submitWeb3Form } from "@/lib/web3forms";
 
 const locations = [
   "Palm Jumeirah",
@@ -9,6 +13,44 @@ const locations = [
 ];
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
+
+  const handleSubscribe = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setStatus(null);
+
+    try {
+      await submitWeb3Form({
+        subject: "New Private Updates Subscription",
+        from_name: "ARK Vision Website",
+        email,
+        form_type: "Newsletter Subscription",
+        message: "Please subscribe this email address to ARK Vision private updates.",
+      });
+      setEmail("");
+      setStatus({
+        type: "success",
+        message: "Thank you. You are subscribed.",
+      });
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Something went wrong. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer className="border-t border-[#c9a84c] bg-black py-12 md:py-20">
       <div className="mx-auto grid max-w-[1280px] gap-12 px-5 text-center sm:px-8 md:grid-cols-3 md:gap-16 md:px-20 md:text-left">
@@ -60,20 +102,37 @@ export default function Footer() {
             Subscribe for exclusive off-market listings and private market
             intelligence.
           </p>
-          <div className="group/input flex items-center border-b border-white/70 pb-1 transition-all duration-500 focus-within:border-[#c9a84c] focus-within:shadow-[0_2px_15px_-5px_rgba(201,168,76,0.3)]">
+          <form
+            onSubmit={handleSubscribe}
+            className="group/input flex items-center border-b border-white/70 pb-1 transition-all duration-500 focus-within:border-[#c9a84c] focus-within:shadow-[0_2px_15px_-5px_rgba(201,168,76,0.3)]"
+          >
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
               placeholder="Your email address"
               className="min-w-0 flex-1 bg-transparent text-sm text-white/80 placeholder:text-white/50 focus:outline-none"
             />
             <button
               type="submit"
+              disabled={isSubmitting}
               className="px-3 py-2 text-[#c9a84c] transition-all duration-300 hover:text-[#fcf6ba] hover:translate-x-0.5"
               aria-label="Subscribe"
             >
               →
             </button>
-          </div>
+          </form>
+          {status && (
+            <p
+              role="status"
+              className={`mt-3 text-xs ${
+                status.type === "success" ? "text-[#c9a84c]" : "text-red-300"
+              }`}
+            >
+              {status.message}
+            </p>
+          )}
         </div>
       </div>
       {/* Bottom bar with section divider */}

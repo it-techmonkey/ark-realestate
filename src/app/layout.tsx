@@ -88,7 +88,10 @@ export default function RootLayout({
       className={`${inter.variable} ${cormorant.variable} ${tobias.variable}`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen overflow-x-clip bg-[#080808] text-white/80 antialiased">
+      <body
+        className="min-h-screen overflow-x-clip bg-[#080808] text-white/80 antialiased"
+        suppressHydrationWarning
+      >
         <RouteLoadingBar />
         <Header />
         <ScrollHandler />
