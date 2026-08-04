@@ -568,7 +568,7 @@ export default async function HomePage() {
                 </div>
                 <div>
                   <p className="text-xs uppercase tracking-widest text-white/50">Direct Line</p>
-                  <p className="font-light text-white/80 text-sm">+971 55 616 2589</p>
+                  <p className="font-light text-white/80 text-sm">+971 47700108</p>
                 </div>
               </div>
               <div className="flex gap-4">
