@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## Getting Started 
 
 First, run the development server:
 
@@ -22,7 +22,7 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 Website inquiry and newsletter forms submit through Web3Forms. Add the access key
 to your local environment and deployment environment:
-
+to your local environment and deployment environment:
 ```bash
 NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your_web3forms_access_key
 ```
