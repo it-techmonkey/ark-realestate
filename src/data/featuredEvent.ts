@@ -20,6 +20,6 @@ export const featuredEvent = {
     "Townhouses starting from AED 2.8 million",
     "Spin the wheel on every booking to win exciting prizes",
   ],
-  imageSrc: "/Events/Summer-Splash_Website-Offer-Image-1-910x1024.jpg",
+  imageSrc: "/Events/dubai-metropolitan-hotel-picture-1-1.webp",
   ctaHref: "/#contact",
 } as const;
