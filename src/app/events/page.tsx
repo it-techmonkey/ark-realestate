@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { Calendar, Clock, MapPin, Play } from "lucide-react";
+import { featuredEvent } from "@/data/featuredEvent";
 
 const DEFAULT_EVENT_TZ = "Asia/Dubai";
 const DEFAULT_EVENT_TZ_LABEL = "Dubai (UTC+4)";
@@ -30,6 +31,17 @@ type EventListing = {
 };
 
 const events: EventListing[] = [
+  {
+    /* Sourced from the shared featured-event record so this card and the
+       homepage popup always show the same details. */
+    title: `${featuredEvent.title} - ${featuredEvent.subtitle}`,
+    dates: [featuredEvent.date],
+    scheduleSummary: featuredEvent.timeLabel,
+    location: featuredEvent.venue,
+    excerpt: featuredEvent.highlights.join(". ") + ".",
+    imageSrc: featuredEvent.imageSrc,
+    badge: featuredEvent.eyebrow,
+  },
   {
     title: "26 July Kolkata - Danube event",
     dates: ["2026-07-26"],
