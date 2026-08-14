@@ -31,6 +31,16 @@ type EventListing = {
 
 const events: EventListing[] = [
   {
+    title: "All Developers Under One Roof - Multi Developer Property Showcase",
+    dates: ["2026-08-22"],
+    scheduleSummary: "10:00 AM to 10:00 PM",
+    location: "Metropolitan Hotel, Sheikh Zayed Road, Dubai",
+    excerpt:
+      "Every developer under one roof at our multi-developer property showcase. Prices starting from AED 500,000 for apartments and AED 2.8 million for townhouses. Spin the wheel on every booking to win exciting prizes.",
+    imageSrc: "/Events/Summer-Splash_Website-Offer-Image-1-910x1024.jpg",
+    badge: "Featured event",
+  },
+  {
     title: "26 July Kolkata - Danube event",
     dates: ["2026-07-26"],
     scheduleSummary: "Danube event at JW Marriott",
