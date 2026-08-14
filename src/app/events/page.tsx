@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { Calendar, Clock, MapPin, Play } from "lucide-react";
+import { featuredEvent } from "@/data/featuredEvent";
 
 const DEFAULT_EVENT_TZ = "Asia/Dubai";
 const DEFAULT_EVENT_TZ_LABEL = "Dubai (UTC+4)";
@@ -31,14 +32,15 @@ type EventListing = {
 
 const events: EventListing[] = [
   {
-    title: "All Developers Under One Roof - Multi Developer Property Showcase",
-    dates: ["2026-08-22"],
-    scheduleSummary: "10:00 AM to 10:00 PM",
-    location: "Metropolitan Hotel, Sheikh Zayed Road, Dubai",
-    excerpt:
-      "Every developer under one roof at our multi-developer property showcase. Prices starting from AED 500,000 for apartments and AED 2.8 million for townhouses. Spin the wheel on every booking to win exciting prizes.",
-    imageSrc: "/Events/Summer-Splash_Website-Offer-Image-1-910x1024.jpg",
-    badge: "Featured event",
+    /* Sourced from the shared featured-event record so this card and the
+       homepage popup always show the same details. */
+    title: `${featuredEvent.title} - ${featuredEvent.subtitle}`,
+    dates: [featuredEvent.date],
+    scheduleSummary: featuredEvent.timeLabel,
+    location: featuredEvent.venue,
+    excerpt: featuredEvent.highlights.join(". ") + ".",
+    imageSrc: featuredEvent.imageSrc,
+    badge: featuredEvent.eyebrow,
   },
   {
     title: "26 July Kolkata - Danube event",
