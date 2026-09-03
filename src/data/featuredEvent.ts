@@ -7,19 +7,21 @@
  */
 export const featuredEvent = {
   eyebrow: "Featured Event",
-  title: "All Developers Under One Roof",
-  subtitle: "Multi Developer Property Showcase",
+  title: "AZIZI Crazy Studio Sale",
+  subtitle: "2 Days Event Only",
   /** ISO date, used by the events page date strip. */
-  date: "2026-08-22",
-  dateLabel: "Saturday, 22 August 2026",
-  timeLabel: "10:00 AM to 10:00 PM",
-  venue: "Metropolitan Hotel, Sheikh Zayed Road, Dubai",
-  priceLine: "Apartments from AED 500,000",
+  date: "2026-09-05",
+  /** All event days, used by the events page date strip. */
+  dates: ["2026-09-05", "2026-09-06"],
+  dateLabel: "Saturday & Sunday, 5–6 September 2026",
+  timeLabel: "10:00 AM to 9:00 PM",
+  venue: "Office 1302, 13th Floor, Conrad Sales Office Tower — Waterfront Gated Community, Dubai",
+  priceLine: "Waterfront Gated Community",
   highlights: [
-    "Apartments starting from AED 500,000",
-    "Townhouses starting from AED 2.8 million",
-    "Spin the wheel on every booking to win exciting prizes",
+    "Two-day studio sale at the Azizi Waterfront gated community",
+    "Free valet parking",
+    "Food and beverages",
   ],
-  imageSrc: "/Events/dubai-metropolitan-hotel-picture-1-1.webp",
+  imageSrc: "/Events/download%20-%202026-09-03T084219.565.jpg",
   ctaHref: "/#contact",
 } as const;
