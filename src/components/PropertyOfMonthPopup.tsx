@@ -83,7 +83,7 @@ export default function PropertyOfMonthPopup({}: Props) {
             src={ev.imageSrc}
             alt={ev.title}
             fill
-            className="object-cover object-top"
+            className="object-cover object-bottom"
             sizes="(max-width: 1024px) 100vw, 540px"
             priority
             unoptimized

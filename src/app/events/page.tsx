@@ -7,7 +7,7 @@ import { featuredEvent } from "@/data/featuredEvent";
 const DEFAULT_EVENT_TZ = "Asia/Dubai";
 const DEFAULT_EVENT_TZ_LABEL = "Dubai (UTC+4)";
 const IMTIAZ_VIDEO_SRC = "/video/imtiaz%2001.mp4";
-const IMTIAZ_WHATSAPP_URL = "https://wa.me/971523557000";
+const IMTIAZ_WHATSAPP_URL = "https://wa.me/971556162589";
 
 /** Noon in this zone — used so calendar day matches the listed date when formatting. */
 const EVENT_DAY_REF_OFFSET: Partial<Record<string, string>> = {
@@ -28,6 +28,8 @@ type EventListing = {
   timeZoneLabel?: string;
   /** Pill label above the title; defaults to "Local Event". */
   badge?: string;
+  /** CSS object-position for the card image; defaults to "center". */
+  imagePosition?: string;
 };
 
 const events: EventListing[] = [
@@ -35,12 +37,13 @@ const events: EventListing[] = [
     /* Sourced from the shared featured-event record so this card and the
        homepage popup always show the same details. */
     title: `${featuredEvent.title} - ${featuredEvent.subtitle}`,
-    dates: [featuredEvent.date],
+    dates: [...featuredEvent.dates],
     scheduleSummary: featuredEvent.timeLabel,
     location: featuredEvent.venue,
     excerpt: featuredEvent.highlights.join(". ") + ".",
     imageSrc: featuredEvent.imageSrc,
     badge: featuredEvent.eyebrow,
+    imagePosition: "bottom",
   },
   {
     title: "26 July Kolkata - Danube event",
@@ -360,6 +363,7 @@ export default function EventsPage() {
                       alt={ev.title}
                       fill
                       className="object-cover"
+                      style={{ objectPosition: ev.imagePosition ?? "center" }}
                       sizes="(max-width: 768px) 100vw, 360px"
                       priority={i === 0}
                       unoptimized

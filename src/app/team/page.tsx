@@ -7,7 +7,6 @@ import { Reveal } from "@/components/Reveal";
 const directorOfSales = [
   { name: "Sachin Madhan", designation: "Director of Sales", image: "/Director%20of%20sales/sachin.JPG" },
   { name: "Pranav Anand", designation: "Director of Sales", image: "/Director%20of%20sales/Pranav.JPG" },
-  { name: "Anisha Antony", designation: "Director of Sales", image: "/Director%20of%20sales/anisha.JPG" },
   { name: "Nikhil Chandani", designation: "Director of Sales", image: "/Director%20of%20sales/Nikhil.JPG" },
   { name: "Sumitra Nayar", designation: "Director of Sales", image: "/Director%20of%20sales/Sumitra.JPG" },
   { name: "Aarthi", designation: "International Director of Sales", image: "/Director%20of%20sales/Arti.jpeg" },
@@ -25,7 +24,7 @@ const vicePresidents = [
   },
   {
     name: "Vinit Chelani",
-    designation: "Vice President",
+    designation: "Assistant Vice President",
     image: "/final%20images/Leaders/vinat sir.jpg.jpeg",
     unoptimized: true,
   },

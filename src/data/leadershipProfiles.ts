@@ -32,7 +32,7 @@ export const leadershipProfiles: LeadershipProfile[] = [
   },
   {
     name: "Vinit Chelani",
-    designation: "Vice President",
+    designation: "Assistant Vice President",
     image: `${LEADERS_BASE}/vinat sir.jpg.jpeg`,
     unoptimized: true,
   },
