@@ -24,7 +24,7 @@ const vicePresidents = [
   },
   {
     name: "Vinit Chelani",
-    designation: "Vice President",
+    designation: "Assistant Vice President",
     image: "/final%20images/Leaders/vinat sir.jpg.jpeg",
     unoptimized: true,
   },
