@@ -130,12 +130,18 @@ export default function PrivacyPolicyPage() {
               <dt className="text-white/45">Registered address</dt>
               <dd>Office No. 1101, Dubai, United Arab Emirates</dd>
               <dt className="text-white/45">Phone</dt>
-              <dd>
+              <dd className="space-y-1">
                 <a
                   href="tel:+971569917401"
-                  className="text-[#c9a84c] transition-colors hover:text-[#fcf6ba]"
+                  className="block text-[#c9a84c] transition-colors hover:text-[#fcf6ba]"
                 >
                   +971569917401
+                </a>
+                <a
+                  href="tel:+971556162589"
+                  className="block text-[#c9a84c] transition-colors hover:text-[#fcf6ba]"
+                >
+                  +971556162589
                 </a>
               </dd>
               <dt className="text-white/45">Email</dt>
@@ -390,6 +396,13 @@ export default function PrivacyPolicyPage() {
                   className="text-[#c9a84c] transition-colors hover:text-[#fcf6ba]"
                 >
                   +971569917401
+                </a>
+                {", "}
+                <a
+                  href="tel:+971556162589"
+                  className="text-[#c9a84c] transition-colors hover:text-[#fcf6ba]"
+                >
+                  +971556162589
                 </a>
               </p>
               <p className="mt-2">

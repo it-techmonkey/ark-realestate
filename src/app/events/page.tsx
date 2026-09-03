@@ -7,7 +7,7 @@ import { featuredEvent } from "@/data/featuredEvent";
 const DEFAULT_EVENT_TZ = "Asia/Dubai";
 const DEFAULT_EVENT_TZ_LABEL = "Dubai (UTC+4)";
 const IMTIAZ_VIDEO_SRC = "/video/imtiaz%2001.mp4";
-const IMTIAZ_WHATSAPP_URL = "https://wa.me/971523557000";
+const IMTIAZ_WHATSAPP_URL = "https://wa.me/971556162589";
 
 /** Noon in this zone — used so calendar day matches the listed date when formatting. */
 const EVENT_DAY_REF_OFFSET: Partial<Record<string, string>> = {
