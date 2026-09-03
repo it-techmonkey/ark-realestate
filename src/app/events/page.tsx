@@ -28,9 +28,23 @@ type EventListing = {
   timeZoneLabel?: string;
   /** Pill label above the title; defaults to "Local Event". */
   badge?: string;
+  /** CSS object-position for the card image; defaults to "center". */
+  imagePosition?: string;
 };
 
 const events: EventListing[] = [
+  {
+    title: "AZIZI CRAZY STUDIO SALE - 2 Days Event Only",
+    dates: ["2026-09-05", "2026-09-06"],
+    scheduleSummary: "10 AM to 9 PM",
+    location:
+      "Office 1302, 13th Floor, Conrad Sales Office Tower — Waterfront Gated Community, Dubai",
+    excerpt:
+      "A two-day studio sale at the Azizi Waterfront gated community. Free valet, food and beverages, and on-ground advisory across the weekend.",
+    imageSrc: "/Events/download%20-%202026-09-03T084219.565.jpg",
+    badge: "Local Event",
+    imagePosition: "bottom",
+  },
   {
     /* Sourced from the shared featured-event record so this card and the
        homepage popup always show the same details. */
@@ -360,6 +374,7 @@ export default function EventsPage() {
                       alt={ev.title}
                       fill
                       className="object-cover"
+                      style={{ objectPosition: ev.imagePosition ?? "center" }}
                       sizes="(max-width: 768px) 100vw, 360px"
                       priority={i === 0}
                       unoptimized
