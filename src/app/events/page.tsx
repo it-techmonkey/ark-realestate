@@ -34,6 +34,40 @@ type EventListing = {
 
 const events: EventListing[] = [
   {
+    title: "Dubai Property Expo — Coimbatore",
+    dates: ["2026-09-26", "2026-09-27"],
+    scheduleSummary: "10:00 AM to 8:00 PM",
+    location: "Le Méridien, Coimbatore",
+    excerpt:
+      "Dubai Property Expo comes to Coimbatore — properties starting from INR 2 Cr+, invest and get a UAE Golden Visa, plus a free Dubai trip on booking at the event. Featuring DAMAC, Danube Properties, Sobha Realty, Azizi, and Samana.",
+    imageSrc: "/Events/WhatsApp%20Image%202026-09-17%20at%208.53.45%20PM.jpeg",
+    timeZone: "Asia/Kolkata",
+    timeZoneLabel: "Coimbatore (IST)",
+    badge: "Regional event",
+  },
+  {
+    title: "Dubai Property Expo — Bengaluru",
+    dates: ["2026-09-26", "2026-09-27"],
+    scheduleSummary: "10:00 AM to 8:00 PM",
+    location: "Renaissance Bengaluru Race Course Hotel",
+    excerpt:
+      "Dubai Property Expo comes to Bengaluru — properties starting from INR 1.8 Cr, exclusive payment plans, UAE Golden Visa eligibility, and tax-free income. Featuring DAMAC, Sobha Realty, Danube Properties, Azizi, Emaar, and Binghatti.",
+    imageSrc: "/Events/WhatsApp%20Image%202026-09-17%20at%208.53.46%20PM.jpeg",
+    timeZone: "Asia/Kolkata",
+    timeZoneLabel: "Bengaluru (IST)",
+    badge: "Regional event",
+  },
+  {
+    title: "Property Carnival — One Day Event, Fairmont Hotel Dubai",
+    dates: ["2026-09-19"],
+    scheduleSummary: "10:00 AM to 9:00 PM",
+    location: "Fairmont Hotel Dubai, Sheikh Zayed Road 33rd Floor, Gulf Auditorium",
+    excerpt:
+      "A one-day property carnival featuring Dubai, Abu Dhabi, and Sharjah's top developers — apartments from AED 500,000 and 3/4/5 BR townhouses from AED 1.8M+, with 9% discount and 2% DLD waiver on selected developers, 0.25% monthly installment plans, valet parking, food and beverages, and a spin-the-wheel prize draw.",
+    imageSrc: "/Events/WhatsApp%20Image%202026-09-17%20at%208.53.44%20PM.jpeg",
+    badge: "One-day event",
+  },
+  {
     /* Sourced from the shared featured-event record so this card and the
        homepage popup always show the same details. */
     title: `${featuredEvent.title} - ${featuredEvent.subtitle}`,
