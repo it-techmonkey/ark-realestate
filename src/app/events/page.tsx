@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { Calendar, Clock, MapPin, Play } from "lucide-react";
-import { featuredEvent } from "@/data/featuredEvent";
+import { featuredEvents } from "@/data/featuredEvent";
 
 const DEFAULT_EVENT_TZ = "Asia/Dubai";
 const DEFAULT_EVENT_TZ_LABEL = "Dubai (UTC+4)";
@@ -33,50 +33,26 @@ type EventListing = {
 };
 
 const events: EventListing[] = [
+  /* Sourced from the shared featured-events record so these cards and the
+     homepage popup carousel always show the same details. */
+  ...featuredEvents.map((ev): EventListing => ({
+    title: `${ev.title} - ${ev.subtitle}`,
+    dates: [...ev.dates],
+    scheduleSummary: ev.timeLabel,
+    location: ev.venue,
+    excerpt: ev.highlights.join(". ") + ".",
+    imageSrc: ev.imageSrc,
+    badge: ev.eyebrow,
+  })),
   {
-    title: "Dubai Property Expo — Coimbatore",
-    dates: ["2026-09-26", "2026-09-27"],
-    scheduleSummary: "10:00 AM to 8:00 PM",
-    location: "Le Méridien, Coimbatore",
-    excerpt:
-      "Dubai Property Expo comes to Coimbatore — properties starting from INR 2 Cr+, invest and get a UAE Golden Visa, plus a free Dubai trip on booking at the event. Featuring DAMAC, Danube Properties, Sobha Realty, Azizi, and Samana.",
-    imageSrc: "/Events/WhatsApp%20Image%202026-09-17%20at%208.53.45%20PM.jpeg",
-    timeZone: "Asia/Kolkata",
-    timeZoneLabel: "Coimbatore (IST)",
-    badge: "Regional event",
-  },
-  {
-    title: "Dubai Property Expo — Bengaluru",
-    dates: ["2026-09-26", "2026-09-27"],
-    scheduleSummary: "10:00 AM to 8:00 PM",
-    location: "Renaissance Bengaluru Race Course Hotel",
-    excerpt:
-      "Dubai Property Expo comes to Bengaluru — properties starting from INR 1.8 Cr, exclusive payment plans, UAE Golden Visa eligibility, and tax-free income. Featuring DAMAC, Sobha Realty, Danube Properties, Azizi, Emaar, and Binghatti.",
-    imageSrc: "/Events/WhatsApp%20Image%202026-09-17%20at%208.53.46%20PM.jpeg",
-    timeZone: "Asia/Kolkata",
-    timeZoneLabel: "Bengaluru (IST)",
-    badge: "Regional event",
-  },
-  {
-    title: "Property Carnival — One Day Event, Fairmont Hotel Dubai",
-    dates: ["2026-09-19"],
+    title: "AZIZI Crazy Studio Sale - 2 Days Event Only",
+    dates: ["2026-09-05", "2026-09-06"],
     scheduleSummary: "10:00 AM to 9:00 PM",
-    location: "Fairmont Hotel Dubai, Sheikh Zayed Road 33rd Floor, Gulf Auditorium",
+    location: "Office 1302, 13th Floor, Conrad Sales Office Tower — Waterfront Gated Community, Dubai",
     excerpt:
-      "A one-day property carnival featuring Dubai, Abu Dhabi, and Sharjah's top developers — apartments from AED 500,000 and 3/4/5 BR townhouses from AED 1.8M+, with 9% discount and 2% DLD waiver on selected developers, 0.25% monthly installment plans, valet parking, food and beverages, and a spin-the-wheel prize draw.",
-    imageSrc: "/Events/WhatsApp%20Image%202026-09-17%20at%208.53.44%20PM.jpeg",
-    badge: "One-day event",
-  },
-  {
-    /* Sourced from the shared featured-event record so this card and the
-       homepage popup always show the same details. */
-    title: `${featuredEvent.title} - ${featuredEvent.subtitle}`,
-    dates: [...featuredEvent.dates],
-    scheduleSummary: featuredEvent.timeLabel,
-    location: featuredEvent.venue,
-    excerpt: featuredEvent.highlights.join(". ") + ".",
-    imageSrc: featuredEvent.imageSrc,
-    badge: featuredEvent.eyebrow,
+      "Two-day studio sale at the Azizi Waterfront gated community. Free valet parking. Food and beverages.",
+    imageSrc: "/Events/download%20-%202026-09-03T084219.565.jpg",
+    badge: "Past Event",
     imagePosition: "bottom",
   },
   {
