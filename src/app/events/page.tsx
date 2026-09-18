@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { Calendar, Clock, MapPin, Play } from "lucide-react";
-import { featuredEvent } from "@/data/featuredEvent";
+import { featuredEvents } from "@/data/featuredEvent";
 
 const DEFAULT_EVENT_TZ = "Asia/Dubai";
 const DEFAULT_EVENT_TZ_LABEL = "Dubai (UTC+4)";
@@ -33,16 +33,26 @@ type EventListing = {
 };
 
 const events: EventListing[] = [
+  /* Sourced from the shared featured-events record so these cards and the
+     homepage popup carousel always show the same details. */
+  ...featuredEvents.map((ev): EventListing => ({
+    title: `${ev.title} - ${ev.subtitle}`,
+    dates: [...ev.dates],
+    scheduleSummary: ev.timeLabel,
+    location: ev.venue,
+    excerpt: ev.highlights.join(". ") + ".",
+    imageSrc: ev.imageSrc,
+    badge: ev.eyebrow,
+  })),
   {
-    /* Sourced from the shared featured-event record so this card and the
-       homepage popup always show the same details. */
-    title: `${featuredEvent.title} - ${featuredEvent.subtitle}`,
-    dates: [...featuredEvent.dates],
-    scheduleSummary: featuredEvent.timeLabel,
-    location: featuredEvent.venue,
-    excerpt: featuredEvent.highlights.join(". ") + ".",
-    imageSrc: featuredEvent.imageSrc,
-    badge: featuredEvent.eyebrow,
+    title: "AZIZI Crazy Studio Sale - 2 Days Event Only",
+    dates: ["2026-09-05", "2026-09-06"],
+    scheduleSummary: "10:00 AM to 9:00 PM",
+    location: "Office 1302, 13th Floor, Conrad Sales Office Tower — Waterfront Gated Community, Dubai",
+    excerpt:
+      "Two-day studio sale at the Azizi Waterfront gated community. Free valet parking. Food and beverages.",
+    imageSrc: "/Events/download%20-%202026-09-03T084219.565.jpg",
+    badge: "Past Event",
     imagePosition: "bottom",
   },
   {
