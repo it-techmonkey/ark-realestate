@@ -30,6 +30,8 @@ type EventListing = {
   badge?: string;
   /** CSS object-position for the card image; defaults to "center". */
   imagePosition?: string;
+  /** Portrait flyer: show the whole image (9:16, no cropping) instead of a cropped cover. */
+  fullFlyer?: boolean;
 };
 
 const events: EventListing[] = [
@@ -40,9 +42,12 @@ const events: EventListing[] = [
     dates: [...ev.dates],
     scheduleSummary: ev.timeLabel,
     location: ev.venue,
-    excerpt: ev.highlights.join(". ") + ".",
+    excerpt: `${ev.priceLine}. ${ev.highlights.join(". ")}.`,
     imageSrc: ev.imageSrc,
     badge: ev.eyebrow,
+    timeZone: ev.timeZone,
+    timeZoneLabel: ev.timeZoneLabel,
+    fullFlyer: ev.fullFlyer,
   })),
   {
     title: "AZIZI Crazy Studio Sale - 2 Days Event Only",
@@ -367,12 +372,18 @@ export default function EventsPage() {
             return (
               <Reveal key={ev.title} delayMs={i * 60}>
                 <article className="overflow-hidden rounded-lg border border-white/10 bg-white/[0.03] md:flex">
-                  <div className="relative aspect-[5/3] w-full shrink-0 md:aspect-auto md:w-[42%] md:max-w-md">
+                  <div
+                    className={
+                      ev.fullFlyer
+                        ? "relative mx-auto aspect-[9/16] w-full max-w-sm shrink-0 bg-black md:mx-0 md:w-[42%] md:max-w-md"
+                        : "relative aspect-[5/3] w-full shrink-0 md:aspect-auto md:w-[42%] md:max-w-md"
+                    }
+                  >
                     <Image
                       src={ev.imageSrc}
                       alt={ev.title}
                       fill
-                      className="object-cover"
+                      className={ev.fullFlyer ? "object-contain" : "object-cover"}
                       style={{ objectPosition: ev.imagePosition ?? "center" }}
                       sizes="(max-width: 768px) 100vw, 360px"
                       priority={i === 0}

@@ -115,7 +115,7 @@ export default function PropertyOfMonthPopup({}: Props) {
       onClick={closePopup}
     >
       <div
-        className="relative grid max-h-[calc(100vh-36px)] w-full max-w-[860px] overflow-hidden rounded-lg border border-white/15 bg-[#080808] shadow-[0_22px_68px_-30px_rgba(0,0,0,0.95)] lg:max-h-[86vh] lg:grid-cols-[0.95fr_0.94fr]"
+        className="relative grid max-h-[calc(100vh-36px)] w-full max-w-[860px] overflow-hidden rounded-lg border border-white/15 bg-[#080808] shadow-[0_22px_68px_-30px_rgba(0,0,0,0.95)] lg:max-h-[86vh] lg:grid-cols-[minmax(0,340px)_1fr]"
         onClick={(event) => event.stopPropagation()}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
@@ -130,27 +130,30 @@ export default function PropertyOfMonthPopup({}: Props) {
         </button>
 
         <section
-          className="relative min-h-[210px] overflow-hidden bg-black sm:min-h-[260px] lg:min-h-[430px]"
+          className="relative h-[46vh] min-h-[320px] overflow-hidden bg-black lg:h-auto lg:min-h-[580px]"
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
         >
           <div key={`img-${index}`} className="absolute inset-0" style={{ animation: slideAnimation }}>
+            {/* Blurred copy fills the side gaps so the flyer below can be shown whole. */}
+            <Image
+              src={ev.imageSrc}
+              alt=""
+              fill
+              aria-hidden
+              className="scale-110 object-cover opacity-60 blur-2xl"
+              sizes="(max-width: 1024px) 100vw, 540px"
+              unoptimized
+            />
             <Image
               src={ev.imageSrc}
               alt={ev.title}
               fill
-              className="object-cover object-bottom"
+              className="object-contain"
               sizes="(max-width: 1024px) 100vw, 540px"
               priority
               unoptimized
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-          </div>
-
-          <div className="absolute left-4 top-4 z-10">
-            <p className="inline-flex border border-[#c9a84c]/35 bg-black/55 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-[#c9a84c] backdrop-blur">
-              {ev.eyebrow}
-            </p>
           </div>
 
           {total > 1 && (
@@ -191,10 +194,10 @@ export default function PropertyOfMonthPopup({}: Props) {
         </section>
 
         <section key={`content-${index}`} className="overflow-y-auto px-5 py-5 sm:px-6 sm:py-6" style={{ animation: slideAnimation }}>
-          <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-gradient-to-r from-[#c9a84c] to-transparent" />
-            <p className="text-[10px] font-light uppercase tracking-[0.34em] text-[#c9a84c]">
-              {ev.subtitle}
+          <div className="flex items-center gap-3 pr-12">
+            <span className="h-px w-8 shrink-0 bg-gradient-to-r from-[#c9a84c] to-transparent" />
+            <p className="text-[10px] font-light uppercase tracking-[0.22em] text-[#c9a84c]">
+              {ev.eyebrow} · {ev.subtitle}
             </p>
           </div>
 

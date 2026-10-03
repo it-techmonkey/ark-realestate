@@ -20,9 +20,96 @@ export type FeaturedEvent = {
   highlights: string[];
   imageSrc: string;
   ctaHref: string;
+  /** IANA timezone for the events page date strip; defaults to Dubai there. */
+  timeZone?: string;
+  timeZoneLabel?: string;
+  /** Events page: show the whole portrait flyer (9:16) instead of a cropped cover. */
+  fullFlyer?: boolean;
 };
 
 export const featuredEvents: FeaturedEvent[] = [
+  {
+    eyebrow: "Local Event",
+    title: "Halla Bol 2",
+    subtitle: "Record Breaking Partnerships",
+    date: "2026-10-10",
+    dates: ["2026-10-10", "2026-10-11"],
+    dateLabel: "Saturday & Sunday, 10–11 October 2026",
+    timeLabel: "Timings to be announced",
+    venue: "Dubai — venue to be announced",
+    priceLine: "AED 50 Million closed at Halla Bol 1",
+    highlights: [
+      "Even bigger partnerships: DAMAC, Danube, AZIZI, Sanzen, Binghatti and more",
+      "Reportage, Peace Homes and Alef on board",
+      "Stronger partnerships, brighter tomorrows",
+    ],
+    imageSrc: "/Events/WhatsApp%20Image%202026-10-03%20at%206.23.46%20PM.jpeg",
+    ctaHref: "/#contact",
+    fullFlyer: true,
+  },
+  {
+    eyebrow: "International Event",
+    title: "Dubai Property Expo — Coimbatore",
+    subtitle: "2 Days Event Only",
+    date: "2026-10-10",
+    dates: ["2026-10-10", "2026-10-11"],
+    dateLabel: "Saturday & Sunday, 10–11 October 2026",
+    timeLabel: "10:00 AM to 8:00 PM",
+    venue: "Le Méridien, Coimbatore",
+    priceLine: "Starting from INR 2 Cr+",
+    highlights: [
+      "Invest and get a UAE Golden Visa",
+      "Book at the event and get a free Dubai trip",
+      "DAMAC, Danube, Sobha, AZIZI and Samana under one roof",
+    ],
+    imageSrc: "/Events/WhatsApp%20Image%202026-10-03%20at%206.23.47%20PM.jpeg",
+    ctaHref: "/#contact",
+    timeZone: "Asia/Kolkata",
+    timeZoneLabel: "Coimbatore (IST)",
+    fullFlyer: true,
+  },
+  {
+    eyebrow: "International Event",
+    title: "Dubai Property Expo — Hyderabad",
+    subtitle: "2 Days Event Only",
+    date: "2026-10-10",
+    dates: ["2026-10-10", "2026-10-11"],
+    dateLabel: "Saturday & Sunday, 10–11 October 2026",
+    timeLabel: "10:00 AM to 8:00 PM",
+    venue: "Taj Krishna, Banjara Hills, Hyderabad",
+    priceLine: "Apartments starting from INR 1.8 Cr+",
+    highlights: [
+      "Attractive payment plans and UAE Golden Visa eligibility",
+      "Tax-free income benefits",
+      "Premium finishes and prime waterfront locations",
+    ],
+    imageSrc: "/Events/event%203.jpeg",
+    ctaHref: "/#contact",
+    timeZone: "Asia/Kolkata",
+    timeZoneLabel: "Hyderabad (IST)",
+    fullFlyer: true,
+  },
+  {
+    eyebrow: "International Event",
+    title: "Dubai's Biggest Property Exhibition — Chennai",
+    subtitle: "2 Days Event Only",
+    date: "2026-10-17",
+    dates: ["2026-10-17", "2026-10-18"],
+    dateLabel: "Saturday & Sunday, 17–18 October 2026",
+    timeLabel: "10:00 AM to 8:00 PM",
+    venue: "ITC Grand Chola, Chennai",
+    priceLine: "Apartments from ₹2 Cr",
+    highlights: [
+      "Exclusive apartments and townhouses in Dubai",
+      "Flexible payment plans, UAE Golden Visa, tax-free income",
+      "DAMAC, Danube, Binghatti, Sobha and AZIZI",
+    ],
+    imageSrc: "/Events/WhatsApp%20Image%202026-10-03%20at%206.23.48%20PM.jpeg",
+    ctaHref: "/#contact",
+    timeZone: "Asia/Kolkata",
+    timeZoneLabel: "Chennai (IST)",
+    fullFlyer: true,
+  },
   {
     eyebrow: "One-Day Event",
     title: "Property Carnival",
