@@ -35,56 +35,6 @@ type EventListing = {
 };
 
 const events: EventListing[] = [
-  {
-    title: "Halla Bol 2 - Record Breaking Partnerships",
-    dates: ["2026-10-10", "2026-10-11"],
-    scheduleSummary: "Timings to be announced — coming soon",
-    location: "Dubai — venue to be announced",
-    excerpt:
-      "After closing AED 50 million at Halla Bol 1, ARK Vision returns with even bigger and grander partnerships with DAMAC, Danube Properties, AZIZI, Sanzen, Reportage, Peace Homes, Alef and Binghatti.",
-    imageSrc: "/Events/WhatsApp%20Image%202026-10-03%20at%206.23.46%20PM.jpeg",
-    badge: "Local Event",
-    fullFlyer: true,
-  },
-  {
-    title: "Dubai Property Expo — Coimbatore",
-    dates: ["2026-10-10", "2026-10-11"],
-    scheduleSummary: "10:00 AM to 8:00 PM",
-    location: "Le Méridien, Coimbatore",
-    excerpt:
-      "Properties starting from INR 2 Cr+. Invest and get a UAE Golden Visa, book at the event and get a free Dubai trip, and meet Dubai's top developers — DAMAC, Danube Properties, Sobha Realty, AZIZI and Samana — under one roof.",
-    imageSrc: "/Events/WhatsApp%20Image%202026-10-03%20at%206.23.47%20PM.jpeg",
-    timeZone: "Asia/Kolkata",
-    timeZoneLabel: "Coimbatore (IST)",
-    badge: "International Event",
-    fullFlyer: true,
-  },
-  {
-    title: "Dubai Property Expo — Hyderabad",
-    dates: ["2026-10-10", "2026-10-11"],
-    scheduleSummary: "10:00 AM to 8:00 PM",
-    location: "Taj Krishna, Banjara Hills, Hyderabad",
-    excerpt:
-      "Invest in a global address — apartments starting from INR 1.8 Cr+. Attractive payment plans, UAE Golden Visa eligibility, tax-free income benefits, premium finishes and prime waterfront opportunities.",
-    imageSrc: "/Events/event%203.jpeg",
-    timeZone: "Asia/Kolkata",
-    timeZoneLabel: "Hyderabad (IST)",
-    badge: "International Event",
-    fullFlyer: true,
-  },
-  {
-    title: "Dubai's Biggest Property Exhibition — Chennai",
-    dates: ["2026-10-17", "2026-10-18"],
-    scheduleSummary: "10:00 AM to 8:00 PM",
-    location: "ITC Grand Chola, Chennai",
-    excerpt:
-      "Exclusive apartments and townhouses in Dubai starting from ₹2 Cr. Flexible payment plans, UAE Golden Visa, tax-free income and prime locations from top developers DAMAC, Danube, Binghatti, Sobha and AZIZI.",
-    imageSrc: "/Events/WhatsApp%20Image%202026-10-03%20at%206.23.48%20PM.jpeg",
-    timeZone: "Asia/Kolkata",
-    timeZoneLabel: "Chennai (IST)",
-    badge: "International Event",
-    fullFlyer: true,
-  },
   /* Sourced from the shared featured-events record so these cards and the
      homepage popup carousel always show the same details. */
   ...featuredEvents.map((ev): EventListing => ({
@@ -92,9 +42,12 @@ const events: EventListing[] = [
     dates: [...ev.dates],
     scheduleSummary: ev.timeLabel,
     location: ev.venue,
-    excerpt: ev.highlights.join(". ") + ".",
+    excerpt: `${ev.priceLine}. ${ev.highlights.join(". ")}.`,
     imageSrc: ev.imageSrc,
     badge: ev.eyebrow,
+    timeZone: ev.timeZone,
+    timeZoneLabel: ev.timeZoneLabel,
+    fullFlyer: ev.fullFlyer,
   })),
   {
     title: "AZIZI Crazy Studio Sale - 2 Days Event Only",
