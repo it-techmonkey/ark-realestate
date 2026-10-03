@@ -30,9 +30,61 @@ type EventListing = {
   badge?: string;
   /** CSS object-position for the card image; defaults to "center". */
   imagePosition?: string;
+  /** Portrait flyer: show the whole image (9:16, no cropping) instead of a cropped cover. */
+  fullFlyer?: boolean;
 };
 
 const events: EventListing[] = [
+  {
+    title: "Halla Bol 2 - Record Breaking Partnerships",
+    dates: ["2026-10-10", "2026-10-11"],
+    scheduleSummary: "Timings to be announced — coming soon",
+    location: "Dubai — venue to be announced",
+    excerpt:
+      "After closing AED 50 million at Halla Bol 1, ARK Vision returns with even bigger and grander partnerships with DAMAC, Danube Properties, AZIZI, Sanzen, Reportage, Peace Homes, Alef and Binghatti.",
+    imageSrc: "/Events/WhatsApp%20Image%202026-10-03%20at%206.23.46%20PM.jpeg",
+    badge: "Local Event",
+    fullFlyer: true,
+  },
+  {
+    title: "Dubai Property Expo — Coimbatore",
+    dates: ["2026-10-10", "2026-10-11"],
+    scheduleSummary: "10:00 AM to 8:00 PM",
+    location: "Le Méridien, Coimbatore",
+    excerpt:
+      "Properties starting from INR 2 Cr+. Invest and get a UAE Golden Visa, book at the event and get a free Dubai trip, and meet Dubai's top developers — DAMAC, Danube Properties, Sobha Realty, AZIZI and Samana — under one roof.",
+    imageSrc: "/Events/WhatsApp%20Image%202026-10-03%20at%206.23.47%20PM.jpeg",
+    timeZone: "Asia/Kolkata",
+    timeZoneLabel: "Coimbatore (IST)",
+    badge: "International Event",
+    fullFlyer: true,
+  },
+  {
+    title: "Dubai Property Expo — Hyderabad",
+    dates: ["2026-10-10", "2026-10-11"],
+    scheduleSummary: "10:00 AM to 8:00 PM",
+    location: "Taj Krishna, Banjara Hills, Hyderabad",
+    excerpt:
+      "Invest in a global address — apartments starting from INR 1.8 Cr+. Attractive payment plans, UAE Golden Visa eligibility, tax-free income benefits, premium finishes and prime waterfront opportunities.",
+    imageSrc: "/Events/event%203.jpeg",
+    timeZone: "Asia/Kolkata",
+    timeZoneLabel: "Hyderabad (IST)",
+    badge: "International Event",
+    fullFlyer: true,
+  },
+  {
+    title: "Dubai's Biggest Property Exhibition — Chennai",
+    dates: ["2026-10-17", "2026-10-18"],
+    scheduleSummary: "10:00 AM to 8:00 PM",
+    location: "ITC Grand Chola, Chennai",
+    excerpt:
+      "Exclusive apartments and townhouses in Dubai starting from ₹2 Cr. Flexible payment plans, UAE Golden Visa, tax-free income and prime locations from top developers DAMAC, Danube, Binghatti, Sobha and AZIZI.",
+    imageSrc: "/Events/WhatsApp%20Image%202026-10-03%20at%206.23.48%20PM.jpeg",
+    timeZone: "Asia/Kolkata",
+    timeZoneLabel: "Chennai (IST)",
+    badge: "International Event",
+    fullFlyer: true,
+  },
   /* Sourced from the shared featured-events record so these cards and the
      homepage popup carousel always show the same details. */
   ...featuredEvents.map((ev): EventListing => ({
@@ -367,12 +419,18 @@ export default function EventsPage() {
             return (
               <Reveal key={ev.title} delayMs={i * 60}>
                 <article className="overflow-hidden rounded-lg border border-white/10 bg-white/[0.03] md:flex">
-                  <div className="relative aspect-[5/3] w-full shrink-0 md:aspect-auto md:w-[42%] md:max-w-md">
+                  <div
+                    className={
+                      ev.fullFlyer
+                        ? "relative mx-auto aspect-[9/16] w-full max-w-sm shrink-0 bg-black md:mx-0 md:w-[42%] md:max-w-md"
+                        : "relative aspect-[5/3] w-full shrink-0 md:aspect-auto md:w-[42%] md:max-w-md"
+                    }
+                  >
                     <Image
                       src={ev.imageSrc}
                       alt={ev.title}
                       fill
-                      className="object-cover"
+                      className={ev.fullFlyer ? "object-contain" : "object-cover"}
                       style={{ objectPosition: ev.imagePosition ?? "center" }}
                       sizes="(max-width: 768px) 100vw, 360px"
                       priority={i === 0}
