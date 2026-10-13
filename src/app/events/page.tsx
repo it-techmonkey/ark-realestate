@@ -13,6 +13,7 @@ const IMTIAZ_WHATSAPP_URL = "https://wa.me/971556162589";
 const EVENT_DAY_REF_OFFSET: Partial<Record<string, string>> = {
   "Asia/Dubai": "+04:00",
   "Asia/Kolkata": "+05:30",
+  "Europe/Amsterdam": "+01:00",
 };
 
 type EventListing = {
