@@ -91,4 +91,23 @@ export const featuredEvents: FeaturedEvent[] = [
     timeZoneLabel: "Chennai (IST)",
     fullFlyer: true,
   },
+  {
+    eyebrow: "Local Event",
+    title: "Crazy DAMAC Discounts",
+    subtitle: "One Day Event Only",
+    date: "2026-10-17",
+    dates: ["2026-10-17"],
+    dateLabel: "Saturday, 17 October 2026",
+    timeLabel: "10:00 AM to 9:00 PM",
+    venue: "Radisson Hotel Dubai, DAMAC Hills",
+    priceLine: "Apartments from AED 680,000 · Townhouses from AED 2.9M",
+    highlights: [
+      "Ready properties. Monthly payments from AED 1,700 (apartments) and AED 7,500 (townhouses)",
+      "8% discount, 4% DLD waiver, 50/50 payment plan and 0.25% monthly EMI",
+      "Food, beverages and valet parking",
+    ],
+    imageSrc: "/Events/Damac-Crazy-Discounts.jpg",
+    ctaHref: "/#contact",
+    fullFlyer: true,
+  },
 ];
