@@ -115,7 +115,7 @@ export default function PropertyOfMonthPopup({}: Props) {
       onClick={closePopup}
     >
       <div
-        className="relative grid max-h-[calc(100vh-36px)] w-full max-w-[860px] overflow-hidden rounded-lg border border-white/15 bg-[#080808] shadow-[0_22px_68px_-30px_rgba(0,0,0,0.95)] lg:max-h-[86vh] lg:grid-cols-[minmax(0,340px)_1fr]"
+        className="relative w-full max-w-[860px] rounded-lg border border-white/15 bg-[#080808] shadow-[0_22px_68px_-30px_rgba(0,0,0,0.95)]"
         onClick={(event) => event.stopPropagation()}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
@@ -129,8 +129,10 @@ export default function PropertyOfMonthPopup({}: Props) {
           <X size={18} />
         </button>
 
+        {/* Scrolls as a whole on phones; fixed two-column layout from lg up. */}
+        <div className="grid max-h-[calc(100dvh-36px)] overflow-y-auto overscroll-contain rounded-lg lg:max-h-[86vh] lg:grid-cols-[minmax(0,340px)_1fr] lg:overflow-hidden">
         <section
-          className="relative h-[46vh] min-h-[320px] overflow-hidden bg-black lg:h-auto lg:min-h-[580px]"
+          className="relative h-[60dvh] min-h-[320px] overflow-hidden bg-black lg:h-auto lg:min-h-[580px]"
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
         >
@@ -193,7 +195,7 @@ export default function PropertyOfMonthPopup({}: Props) {
           )}
         </section>
 
-        <section key={`content-${index}`} className="overflow-y-auto px-5 py-5 sm:px-6 sm:py-6" style={{ animation: slideAnimation }}>
+        <section key={`content-${index}`} className="px-5 py-5 sm:px-6 sm:py-6 lg:overflow-y-auto" style={{ animation: slideAnimation }}>
           <div className="flex items-center gap-3 pr-12">
             <span className="h-px w-8 shrink-0 bg-gradient-to-r from-[#c9a84c] to-transparent" />
             <p className="text-[10px] font-light uppercase tracking-[0.22em] text-[#c9a84c]">
@@ -243,6 +245,7 @@ export default function PropertyOfMonthPopup({}: Props) {
             </Link>
           </div>
         </section>
+        </div>
       </div>
     </div>
   );
